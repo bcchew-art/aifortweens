@@ -189,7 +189,28 @@
 <body>
 
 <div class="hero">
-  <span class="hero-emoji">🦞</span>
+  <span class="hero-emoji">
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Antenna -->
+      <line x1="32" y1="6" x2="32" y2="14" stroke="#00bfae" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="32" cy="4" r="3" fill="#00bfae"/>
+      <!-- Head -->
+      <rect x="10" y="14" width="44" height="34" rx="10" fill="#1a2e50"/>
+      <rect x="10" y="14" width="44" height="34" rx="10" stroke="#00bfae" stroke-width="1.5"/>
+      <!-- Eyes -->
+      <rect x="18" y="24" width="10" height="10" rx="3" fill="#00bfae"/>
+      <rect x="36" y="24" width="10" height="10" rx="3" fill="#00bfae"/>
+      <circle cx="23" cy="29" r="2.5" fill="#0f2240"/>
+      <circle cx="41" cy="29" r="2.5" fill="#0f2240"/>
+      <circle cx="24" cy="28" r="1" fill="white" opacity="0.7"/>
+      <circle cx="42" cy="28" r="1" fill="white" opacity="0.7"/>
+      <!-- Smile -->
+      <path d="M22 40 Q32 47 42 40" stroke="#00bfae" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- Ears / side buttons -->
+      <rect x="6" y="24" width="5" height="8" rx="2.5" fill="#1a6fff"/>
+      <rect x="53" y="24" width="5" height="8" rx="2.5" fill="#1a6fff"/>
+    </svg>
+  </span>
   <h1>Your First AI Agent: Vibe Coding for Tweens</h1>
   <p>Powered by OpenClaw — Session Briefing for Parents</p>
   <div class="hero-pills">
@@ -213,7 +234,7 @@
       <h2>What is OpenClaw?</h2>
     </div>
     <div class="card">
-      <p class="what-text">An open-source AI assistant that runs on your own computer and listens through everyday apps like WhatsApp. It has memory, can browse the web, manage files, and be taught new tricks — called Skills. Think of it as your child's own personal Jarvis.</p>
+      <p class="what-text">A free AI assistant that lives on your own computer and chats through WhatsApp. It remembers your child, can search the web, and can be taught new abilities — called Skills. Think of it as your child's own personal Jarvis, running on your home machine instead of someone else's server.</p>
       <div class="meta-row"><span class="meta-key">Website</span><span class="meta-val">openclaw.ai</span></div>
       <div class="meta-row"><span class="meta-key">Works on</span><span class="meta-val">Mac · Windows · Linux</span></div>
       <div class="meta-row"><span class="meta-key">Chat via</span><span class="meta-val">WhatsApp · Telegram · Discord</span></div>
@@ -275,14 +296,14 @@
         </li>
         <li>
           <span class="time-badge">30–60 min</span>
-          <span class="label">Responsible Use &amp; Token Awareness
-            <span class="sublabel">Dos &amp; don'ts · what are tokens · why good prompts save money · vibe coding intro</span>
+          <span class="label">Responsible Use &amp; How AI Credits Work
+            <span class="sublabel">Dos &amp; don'ts · every message costs a tiny bit of credit — learn to use it wisely · vibe coding intro</span>
           </span>
         </li>
         <li>
           <span class="time-badge">60–120 min</span>
-          <span class="label">Setup &amp; Infrastructure
-            <span class="sublabel">Mac Mini → OpenClaw → OpenRouter $20 → Brave API → WhatsApp connection</span>
+          <span class="label">Setup &amp; Getting Connected
+            <span class="sublabel">Install the agent on the Mac Mini · load it with AI credits · connect it to WhatsApp so kids can chat with it</span>
           </span>
         </li>
       </ul>
@@ -294,13 +315,13 @@
         <li>
           <span class="time-badge">0–80 min</span>
           <span class="label">Hands-On: Build a Chess Skill
-            <span class="sublabel">① What is a Skill &amp; how it extends the agent · ② 2 kids per machine take turns vibe coding the Lichess chess skill — describing what they want, AI builds it · ③ Once built, kids use WhatsApp to challenge the AI to a chess game using the skill they just created · ④ Level up — enhance the skill by integrating Stockfish engine so the AI plays smarter, not just follows moves</span>
+            <span class="sublabel">① What is a Skill &amp; how it gives the agent new abilities · ② Kids take turns telling the AI what to build — it writes the code for them · ③ Once built, kids WhatsApp the agent and challenge it to a chess game · ④ Level up — make the AI play smarter by adding a stronger chess engine</span>
           </span>
         </li>
         <li>
           <span class="time-badge">80–100 min</span>
           <span class="label">Explore &amp; Experiment
-            <span class="sublabel">Try your own ideas · live internet search via Brave API</span>
+            <span class="sublabel">Try your own ideas · ask the agent to search the web in real time</span>
           </span>
         </li>
         <li>
@@ -327,7 +348,7 @@
         <li><span class="dot req"></span>How AI memory works — it remembers you over time</li>
         <li><span class="dot req"></span>What AI can and cannot do — and why that matters</li>
         <li><span class="dot req"></span>How to give clear instructions (prompting) for better results</li>
-        <li><span class="dot req"></span>What tokens are and how to spend them responsibly</li>
+        <li><span class="dot req"></span>How AI credits work — and how to use them responsibly</li>
         <li><span class="dot req"></span>Vibe coding — directing AI to build things in plain English</li>
         <li><span class="dot req"></span>How to build a custom Skill (chess via Lichess)</li>
         <li><span class="dot req"></span>Safe and responsible AI use</li>
@@ -345,24 +366,24 @@
   <div class="section">
     <div class="section-label">
       <span class="icon">⚡</span>
-      <h2>AI Usage — How It Works</h2>
+      <h2>AI Usage — What It Costs &amp; How to Manage It</h2>
     </div>
     <div class="card">
-      <p class="what-text">Every message sent to the agent uses AI credits (tokens). We recommend a two-stage approach based on your child's progress:</p>
+      <p class="what-text">Every message to the agent uses a small amount of AI credit. Think of it like a prepaid data plan — when it's empty, you top it up. Here's how we suggest starting out:</p>
       <div class="stage-grid">
         <div class="stage-box active">
           <div class="stage-label active">✅ Stage 1 — Start Here</div>
-          <div class="stage-title">OpenRouter — $20 Credit</div>
-          <div class="stage-desc">Pay-as-you-go, no expiry. Choose any AI model. No credit = no response — simple and transparent. Ideal while usage habits are still unknown. With responsible prompting, $20 should last well beyond the session.</div>
+          <div class="stage-title">Prepaid AI Credits — $20</div>
+          <div class="stage-desc">Load $20 of credit via OpenRouter. No monthly fee, no expiry. When it runs out, you top it up. Simple, transparent, and teaches kids to be thoughtful with how they use AI. $20 should last well beyond today's session.</div>
         </div>
         <div class="stage-box later">
           <div class="stage-label later">⏳ Stage 2 — When Ready</div>
-          <div class="stage-title">GPT Plus $30/mo + OpenRouter as Fallback</div>
-          <div class="stage-desc">Once your child understands token responsibility, upgrade to GPT Plus for a fixed monthly cost. Use OpenRouter as a fallback when the weekly limit is reached. Only move here when you're confident in their prompting habits.</div>
+          <div class="stage-title">ChatGPT Plus $30/mo + Prepaid as Backup</div>
+          <div class="stage-desc">Once your child has good habits, switch to a flat monthly plan. Keep prepaid credits as a backup for when the monthly limit runs out. Only make this move when you're confident they won't burn through it.</div>
         </div>
       </div>
       <div class="alert" style="margin-top:12px;">
-        ⚠️ <strong>Why not GPT Plus from day one?</strong> GPT Plus has an unpredictable weekly usage limit. Hitting the limit mid-session means the agent goes silent for the rest of the week — with no warning. Frustrating for kids, confusing for parents.
+        ⚠️ <strong>Why not ChatGPT Plus from day one?</strong> It has an unpredictable weekly usage cap. When the cap is hit, the agent goes completely silent for the rest of the week — with no warning. That's confusing for kids and frustrating for parents.
       </div>
     </div>
   </div>
@@ -380,15 +401,15 @@
         <span class="cost-price">SGD 849</span>
       </div>
       <div class="cost-row">
-        <div class="cost-item">eSIM Data Plan <span>Monthly · a separate number for your agent's own WhatsApp account — so anyone can chat with it</span></div>
+        <div class="cost-item">eSIM Data Plan <span>Monthly · a separate phone number just for your agent's WhatsApp — so anyone in the family can message it</span></div>
         <span class="cost-price">SGD 4.90 / mo</span>
       </div>
       <div class="cost-row">
-        <div class="cost-item">Brave Search API <span>Monthly · 1,000 searches · shareable</span></div>
+        <div class="cost-item">Web Search Add-on <span>Monthly · lets the agent search the internet in real time · shareable across family</span></div>
         <span class="cost-price">USD 5 / mo</span>
       </div>
       <div class="cost-row">
-        <div class="cost-item">OpenRouter AI Credits <span>Start with $20 · top up as needed · no expiry</span></div>
+        <div class="cost-item">AI Credits (Prepaid) <span>Start with $20 · top up as needed · never expires</span></div>
         <span class="cost-price">USD 20 to start</span>
       </div>
       <div class="cost-total">
@@ -409,7 +430,7 @@
     <div class="prep-box">
       <h3>One thing to prepare</h3>
       <div class="tip-grid">
-        <div class="tip"><span class="tip-icon">🦞</span><span><strong>Think of a name for your agent — and why that name.</strong> The "why" helps shape its persona. Is it serious or playful? Formal or friendly? A strong character makes the agent feel truly yours.</span></div>
+        <div class="tip"><span class="tip-icon">🤖</span><span><strong>Think of a name for your agent — and why that name.</strong> The "why" helps shape its persona. Is it serious or playful? Formal or friendly? A strong character makes the agent feel truly yours.</span></div>
         <div class="tip"><span class="tip-icon">💻</span><span><strong>Bringing an old laptop?</strong> Great — we can set it up on the spot. But make sure it has <strong>no sensitive personal data</strong> stored on it. Once OpenClaw is installed, the agent will have access to everything on that machine — files, folders, all of it.</span></div>
       </div>
     </div>
@@ -425,7 +446,7 @@
       <div class="tip-grid">
         <div class="tip"><span class="tip-icon">🎯</span><span>Be specific — the clearer the instruction, the better the result</span></div>
         <div class="tip"><span class="tip-icon">🔁</span><span>If it gets something wrong, just tell it what to fix</span></div>
-        <div class="tip"><span class="tip-icon">💸</span><span>Shorter, clearer prompts use fewer tokens — say more with less</span></div>
+        <div class="tip"><span class="tip-icon">💸</span><span>Shorter, clearer messages use less credit — say more with fewer words</span></div>
         <div class="tip"><span class="tip-icon">🔬</span><span>Experiment freely — you can't break it by asking questions</span></div>
       </div>
     </div>
@@ -493,7 +514,7 @@
   <a href="https://openclaw.ai">openclaw.ai</a> &nbsp;·&nbsp;
   <a href="https://docs.openclaw.ai">docs.openclaw.ai</a> &nbsp;·&nbsp;
   <a href="https://openrouter.ai">openrouter.ai</a><br>
-  <span style="color:rgba(255,255,255,0.3); font-size:11px;">v0.2 · Updated March 2026</span>
+  <span style="color:rgba(255,255,255,0.3); font-size:11px;">v0.3 · Updated March 2026</span>
 </div>
 
 </body>
