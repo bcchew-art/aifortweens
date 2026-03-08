@@ -184,7 +184,72 @@
   /* ── FOOTER ── */
   .footer { background: var(--navy); padding: 20px 24px; text-align: center; color: rgba(255,255,255,0.5); font-size: 12px; line-height: 1.6; margin-top: 12px; }
   .footer a { color: var(--teal); text-decoration: none; }
+
+  /* ── INTRO CARD ── */
+  .intro-card { background: linear-gradient(135deg, #e8f4ff 0%, #e6faf7 100%); border: 1.5px solid var(--teal); border-radius: 14px; padding: 18px 20px; margin-top: 20px; }
+  .intro-card p { font-size: 15px; line-height: 1.75; color: var(--text); }
+  .intro-card .intro-title { font-family: 'DM Serif Display', serif; font-size: 16px; color: #005e57; margin-bottom: 8px; }
+  @media (prefers-color-scheme: dark) {
+    .intro-card { background: linear-gradient(135deg, #0f1e34 0%, #0f2a24 100%); border-color: var(--teal); }
+    .intro-card p { color: var(--text); }
+    .intro-card .intro-title { color: var(--teal); }
+  }
+
+  /* ── TOOLTIPS ── */
+  .tip-word { border-bottom: 1.5px dashed var(--teal); cursor: pointer; position: relative; display: inline-block; color: inherit; }
+  .tip-word::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy);
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 8px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+    max-width: 220px;
+    white-space: normal;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+  .tip-word::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--navy);
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+  }
+  .tip-word:hover::after, .tip-word:hover::before,
+  .tip-word.active::after, .tip-word.active::before { opacity: 1; }
 </style>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.tip-word').forEach(el => {
+      el.addEventListener('click', () => {
+        const isActive = el.classList.contains('active');
+        document.querySelectorAll('.tip-word.active').forEach(e => e.classList.remove('active'));
+        if (!isActive) el.classList.add('active');
+      });
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.classList.contains('tip-word')) {
+        document.querySelectorAll('.tip-word.active').forEach(e => e.classList.remove('active'));
+      }
+    });
+  });
+</script>
 </head>
 <body>
 
@@ -227,6 +292,12 @@
 
 <div class="content">
 
+  <!-- PLAIN ENGLISH INTRO -->
+  <div class="intro-card">
+    <div class="intro-title">👋 What's happening today — in plain English</div>
+    <p>Today you'll meet an AI that lives on a computer and chats through WhatsApp. You'll give it a name, watch it remember things, and then — together — build a brand new ability for it from scratch. By the end of the day, you'll be able to WhatsApp it and challenge it to a game of chess. No coding experience needed. Not for the kids, not for you.</p>
+  </div>
+
   <!-- WHAT IS OPENCLAW -->
   <div class="section">
     <div class="section-label">
@@ -234,7 +305,7 @@
       <h2>What is OpenClaw?</h2>
     </div>
     <div class="card">
-      <p class="what-text">A free AI assistant that lives on your own computer and chats through WhatsApp. It remembers your child, can search the web, and can be taught new abilities — called Skills. Think of it as your child's own personal Jarvis, running on your home machine instead of someone else's server.</p>
+      <p class="what-text">A free <span class="tip-word" data-tip="An AI agent can remember you, take actions, and learn new tricks — unlike a regular chatbot that just answers questions.">AI assistant</span> that lives on your own computer and chats through WhatsApp. It remembers your child, can search the web, and can be taught new abilities — called <span class="tip-word" data-tip="Skills are new abilities you teach the agent. Like a chess skill — once installed, it can actually play chess with you.">Skills</span>. Think of it as your child's own personal Jarvis, running on your home machine instead of someone else's server.</p>
       <div class="meta-row"><span class="meta-key">Website</span><span class="meta-val">openclaw.ai</span></div>
       <div class="meta-row"><span class="meta-key">Works on</span><span class="meta-val">Mac · Windows · Linux</span></div>
       <div class="meta-row"><span class="meta-key">Chat via</span><span class="meta-val">WhatsApp · Telegram · Discord</span></div>
@@ -249,7 +320,7 @@
       <h2>What is Vibe Coding?</h2>
     </div>
     <div class="card">
-      <p class="what-text">One of the most exciting skills your child will learn today. Here's how it compares to traditional coding:</p>
+      <p class="what-text">One of the most exciting skills your child will learn today. <span class="tip-word" data-tip="Vibe coding = telling the AI what you want in plain English, and it writes the code for you. No syntax needed.">Here's how it compares</span> to traditional coding:</p>
       <div class="vibe-grid">
         <div class="vibe-col">
           <h4 class="trad">Traditional Coding</h4>
@@ -349,8 +420,8 @@
         <li><span class="dot req"></span>What AI can and cannot do — and why that matters</li>
         <li><span class="dot req"></span>How to give clear instructions (prompting) for better results</li>
         <li><span class="dot req"></span>How AI credits work — and how to use them responsibly</li>
-        <li><span class="dot req"></span>Vibe coding — directing AI to build things in plain English</li>
-        <li><span class="dot req"></span>How to build a custom Skill (chess via Lichess)</li>
+        <li><span class="dot req"></span><span class="tip-word" data-tip="Vibe coding = you describe what you want, AI builds it. No coding knowledge needed.">Vibe coding</span> — directing AI to build things in plain English</li>
+        <li><span class="dot req"></span>How to build a custom <span class="tip-word" data-tip="A Skill = a new ability for the agent. Today's skill: play chess via Lichess.">Skill</span> (chess via Lichess)</li>
         <li><span class="dot req"></span>Safe and responsible AI use</li>
       </ul>
       <div class="divider"></div>
@@ -369,7 +440,7 @@
       <h2>AI Usage — What It Costs &amp; How to Manage It</h2>
     </div>
     <div class="card">
-      <p class="what-text">Every message to the agent uses a small amount of AI credit. Think of it like a prepaid data plan — when it's empty, you top it up. Here's how we suggest starting out:</p>
+      <p class="what-text">Every message to the agent uses a small amount of <span class="tip-word" data-tip="AI credits = the 'fuel' that powers each message. Like a prepaid data plan — when it runs out, you top it up.">AI credit</span>. Think of it like a prepaid data plan — when it's empty, you top it up. Here's how we suggest starting out:</p>
       <div class="stage-grid">
         <div class="stage-box active">
           <div class="stage-label active">✅ Stage 1 — Start Here</div>
@@ -479,7 +550,7 @@
       </div>
       <div class="divider"></div>
       <div class="parent-block">
-        <h3>⚠️ Warning: Downloading Skills</h3>
+        <h3>⚠️ Warning: Downloading <span class="tip-word" data-tip="Skills are add-ons that give the agent new abilities. Anyone can publish one — so treat them like apps from unknown developers.">Skills</span></h3>
         <ul class="check-list">
           <li><span class="chk">🚫</span>ClawHub has unlimited community-built skills to download</li>
           <li><span class="chk">🚫</span>But OpenClaw is open source — <strong>anyone</strong> can publish a skill</li>
@@ -514,7 +585,7 @@
   <a href="https://openclaw.ai">openclaw.ai</a> &nbsp;·&nbsp;
   <a href="https://docs.openclaw.ai">docs.openclaw.ai</a> &nbsp;·&nbsp;
   <a href="https://openrouter.ai">openrouter.ai</a><br>
-  <span style="color:rgba(255,255,255,0.3); font-size:11px;">v0.3 · Updated March 2026</span>
+  <span style="color:rgba(255,255,255,0.3); font-size:11px;">v0.4 · Updated March 2026</span>
 </div>
 
 </body>
