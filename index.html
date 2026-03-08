@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw — Session Handout</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2240;
+    --blue: #1a6fff;
+    --teal: #00bfae;
+    --soft: #f0f6ff;
+    --card: #ffffff;
+    --text: #1a2332;
+    --muted: #6b7a94;
+    --tag-req: #e6f0ff;
+    --tag-opt: #e6faf7;
+    --border: #edf0f5;
+    --red: #ff4d4d;
+    --red-bg: #fff0f0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --navy: #0a1628;
+      --blue: #5b9fff;
+      --teal: #00d4c0;
+      --soft: #111b2e;
+      --card: #1a2640;
+      --text: #e8eef8;
+      --muted: #8fa0bc;
+      --tag-req: #1a2e50;
+      --tag-opt: #0f2e2b;
+      --border: #1f3050;
+      --red: #ff6b6b;
+      --red-bg: #2a1010;
+    }
+    body { background: #0d1520; }
+    .meta-row, .topic-list li, .timeline li, .check-list li, .cost-row, .compare-row { border-bottom-color: #1f3050; }
+    .tip { background: #0f1e34; }
+    .tag.req { color: var(--blue); background: #1a2e50; }
+    .tag.opt { color: var(--teal); background: #0f2e2b; }
+    .time-badge { background: #0f1e34; color: var(--blue); }
+    .lunch-row { background: #0f2a1a; }
+    .alert { background: #2a1f00; border-left-color: #f0a500; color: #f0c050; }
+    .danger { background: #2a1010; border-left-color: var(--red); color: #ffaaaa; }
+    .prep-box { background: #0f1e34; border-color: var(--teal); }
+    .prep-box h3 { color: var(--teal); }
+    .cost-total { background: #0f1e34; }
+    .stage-box { background: #0f1e34; }
+    .stage-box.active { border-color: var(--teal); }
+    .stage-box.later { border-color: #2e4060; }
+    .stage-label.active { color: var(--teal); }
+    .stage-label.later { color: var(--muted); }
+    .vibe-col { background: #0f1e34; }
+    .vibe-col.vibe { border-color: var(--teal); }
+    .vibe-col h4.trad { color: var(--muted); }
+    .vibe-col h4.vibe { color: var(--teal); }
+    .section-label h2 { color: #ffffff !important; }
+    .what-text, .note-text { color: #a8bcd4; }
+    .parent-block h3 { color: #8fa0bc; }
+    .key-msg { background: #0f2a1a; border-color: var(--teal); color: #a0d8cc; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--soft);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 36px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(0,191,174,0.18) 0%, transparent 70%); }
+  .hero::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(26,111,255,0.2) 0%, transparent 70%); }
+  .hero-emoji { font-size: 48px; display: block; margin-bottom: 12px; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 28px; color: #fff; line-height: 1.2; margin-bottom: 8px; }
+  .hero p { color: rgba(255,255,255,0.65); font-size: 14px; }
+  .hero-pills { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .pill { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); }
+
+  /* ── LAYOUT ── */
+  .content { padding: 0 16px 40px; max-width: 520px; margin: 0 auto; }
+  .section { margin-top: 28px; }
+  .section-label { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .section-label .icon { font-size: 18px; }
+  .section-label h2 { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--navy); }
+  .card { background: var(--card); border-radius: 14px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .what-text { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+  .note-text { font-size: 12.5px; color: var(--muted); margin-top: 10px; font-style: italic; }
+  .divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 14px 0; }
+
+  /* ── META ── */
+  .meta-row { display: flex; gap: 6px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+  .meta-row:last-child { border-bottom: none; }
+  .meta-key { color: var(--muted); width: 80px; flex-shrink: 0; }
+  .meta-val { color: var(--text); font-weight: 500; }
+
+  /* ── VIBE CODING COMPARE ── */
+  .vibe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .vibe-col { background: var(--soft); border-radius: 12px; padding: 12px 14px; border: 1.5px solid var(--border); }
+  .vibe-col.vibe { border-color: var(--teal); }
+  .vibe-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .vibe-col h4.trad { color: var(--muted); }
+  .vibe-col h4.vibe { color: #007a70; }
+  .vibe-col ul { list-style: none; }
+  .vibe-col ul li { font-size: 12.5px; padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; gap: 6px; }
+  .vibe-col ul li:last-child { border-bottom: none; }
+  .vibe-col ul li .vi { flex-shrink: 0; }
+  .key-msg { background: #e8faf8; border: 1.5px solid var(--teal); border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #005e57; margin-top: 4px; line-height: 1.6; }
+
+  /* ── TAG ── */
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-bottom: 10px; }
+  .tag.req { background: var(--tag-req); color: var(--blue); }
+  .tag.opt { background: var(--tag-opt); color: #008f83; }
+
+  /* ── TOPIC LIST ── */
+  .topic-list { list-style: none; }
+  .topic-list li { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 14px; border-bottom: 1px solid var(--border); }
+  .topic-list li:last-child { border-bottom: none; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .dot.req { background: var(--blue); }
+  .dot.opt { background: var(--teal); }
+
+  /* ── TIMELINE ── */
+  .timeline { list-style: none; }
+  .timeline li { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+  .timeline li:last-child { border-bottom: none; }
+  .timeline li .label { flex: 1; }
+  .timeline li .sublabel { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; }
+  .time-badge { background: var(--soft); color: var(--blue); font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+  .lunch-row { background: #edfff8; border-radius: 10px; padding: 10px 14px; margin: 6px 0; display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #007a50; border: 1px solid #b2edd0; }
+
+  /* ── COST ── */
+  .cost-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; gap: 12px; }
+  .cost-row:last-of-type { border-bottom: none; }
+  .cost-item { flex: 1; }
+  .cost-item span { display: block; font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+  .cost-price { font-weight: 600; color: var(--text); white-space: nowrap; }
+  .cost-total { background: var(--soft); border-radius: 10px; padding: 10px 14px; margin-top: 12px; display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600; }
+
+  /* ── USAGE STAGES ── */
+  .stage-grid { display: flex; flex-direction: column; gap: 10px; }
+  .stage-box { border-radius: 12px; padding: 13px 15px; background: var(--soft); border: 1.5px solid var(--border); }
+  .stage-box.active { border-color: var(--teal); }
+  .stage-box.later { border-color: var(--border); opacity: 0.85; }
+  .stage-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .stage-label.active { color: #007a70; }
+  .stage-label.later { color: var(--muted); }
+  .stage-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .stage-desc { font-size: 13px; color: var(--muted); }
+
+  /* ── TIPS ── */
+  .tip-grid { display: flex; flex-direction: column; gap: 10px; }
+  .tip { display: flex; gap: 12px; align-items: flex-start; background: var(--soft); border-radius: 10px; padding: 11px 14px; font-size: 13.5px; }
+  .tip .tip-icon { font-size: 18px; flex-shrink: 0; }
+
+  /* ── PREP BOX ── */
+  .prep-box { border: 1.5px solid var(--teal); border-radius: 12px; padding: 14px 16px; }
+  .prep-box h3 { font-size: 13px; font-weight: 600; color: #007a70; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+
+  /* ── PARENT NOTES ── */
+  .parent-block { margin-bottom: 14px; }
+  .parent-block h3 { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .check-list { list-style: none; }
+  .check-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; padding: 5px 0; border-bottom: 1px solid var(--border); }
+  .check-list li:last-child { border-bottom: none; }
+  .chk { color: var(--teal); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── ALERTS ── */
+  .alert { background: #fff8e6; border-left: 3px solid #f0a500; border-radius: 0 10px 10px 0; padding: 12px 14px; font-size: 13px; color: #7a5500; margin-top: 12px; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red); border-radius: 0 10px 10px 0; padding: 12px 14px; font-size: 13px; color: #a00000; margin-top: 10px; line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--navy); padding: 20px 24px; text-align: center; color: rgba(255,255,255,0.5); font-size: 12px; line-height: 1.6; margin-top: 12px; }
+  .footer a { color: var(--teal); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-emoji">🦞</span>
+  <h1>Your First AI Agent: Vibe Coding for Tweens</h1>
+  <p>Powered by OpenClaw — Session Briefing for Parents</p>
+  <div class="hero-pills">
+    <span class="pill">4 Hours + Lunch</span>
+    <span class="pill">Hands-On · 2 Machines</span>
+  </div>
+  <div class="hero-pills" style="margin-top:10px;">
+    <span class="pill">👧 Lala · 13</span>
+    <span class="pill">👦 Karl · 12</span>
+    <span class="pill">👦 Nat · 12</span>
+    <span class="pill">👧 Rachyl · 11</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- WHAT IS OPENCLAW -->
+  <div class="section">
+    <div class="section-label">
+      <span class="icon">🤖</span>
+      <h2>What is OpenClaw?</h2>
+    </div>
+    <div class="card">
+      <p class="what-text">An open-source AI assistant that runs on your own computer and listens through everyday apps like WhatsApp. It has memory, can browse the web, manage files, and be taught new tricks — called Skills. Think of it as your child's own personal Jarvis.</p>
+      <div class="meta-row"><span class="meta-key">Website</span><span class="meta-val">openclaw.ai</span></div>
+      <div class="meta-row"><span class="meta-key">Works on</span><span class="meta-val">Mac · Windows · Linux</span></div>
+      <div class="meta-row"><span class="meta-key">Chat via</span><span class="meta-val">WhatsApp · Telegram · Discord</span></div>
+      <div class="meta-row"><span class="meta-key">Open source</span><span class="meta-val">Yes — free to use</span></div>
+    </div>
+  </div>
+
+  <!-- WHAT IS VIBE CODING -->
+  <div class="section">
+    <div class="section-label">
+      <span class="icon">🎮</span>
+      <h2>What is Vibe Coding?</h2>
+    </div>
+    <div class="card">
+      <p class="what-text">One of the most exciting skills your child will learn today. Here's how it compares to traditional coding:</p>
+      <div class="vibe-grid">
+        <div class="vibe-col">
+          <h4 class="trad">Traditional Coding</h4>
+          <ul>
+            <li><span class="vi">📖</span>Learn syntax &amp; logic first</li>
+            <li><span class="vi">⏳</span>Years to be productive</li>
+            <li><span class="vi">✍️</span>You write every line</li>
+            <li><span class="vi">🐛</span>One mistake breaks it</li>
+            <li><span class="vi">🚧</span>Barrier: technical knowledge</li>
+          </ul>
+        </div>
+        <div class="vibe-col vibe">
+          <h4 class="vibe">Vibe Coding</h4>
+          <ul>
+            <li><span class="vi">💬</span>Describe in plain English</li>
+            <li><span class="vi">⚡</span>Productive from day one</li>
+            <li><span class="vi">🤖</span>AI writes, you direct</li>
+            <li><span class="vi">🔁</span>Tell AI what's wrong, it fixes</li>
+            <li><span class="vi">🎯</span>Barrier: knowing what you want</li>
+          </ul>
+        </div>
+      </div>
+      <div class="key-msg">
+        💡 <strong>Key message:</strong> Vibe coding doesn't replace learning to code — but your child can <em>build real things</em> before they ever learn a single line of syntax. The skill being taught is <strong>thinking clearly and communicating precisely</strong> — valuable for life, not just tech.
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION TIMELINE -->
+  <div class="section">
+    <div class="section-label">
+      <span class="icon">⏱️</span>
+      <h2>Session Timeline</h2>
+    </div>
+    <div class="card">
+
+      <div style="font-size:12px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">🌅 Block 1 — 2 Hours</div>
+      <ul class="timeline">
+        <li>
+          <span class="time-badge">0–30 min</span>
+          <span class="label">Concepts &amp; What is OpenClaw
+            <span class="sublabel">AI agent vs chatbot · how memory works · what it can &amp; can't do</span>
+          </span>
+        </li>
+        <li>
+          <span class="time-badge">30–60 min</span>
+          <span class="label">Responsible Use &amp; Token Awareness
+            <span class="sublabel">Dos &amp; don'ts · what are tokens · why good prompts save money · vibe coding intro</span>
+          </span>
+        </li>
+        <li>
+          <span class="time-badge">60–120 min</span>
+          <span class="label">Setup &amp; Infrastructure
+            <span class="sublabel">Mac Mini → OpenClaw → OpenRouter $20 → Brave API → WhatsApp connection</span>
+          </span>
+        </li>
+      </ul>
+
+      <div class="lunch-row" style="margin-top:10px;">🍱 Lunch Break</div>
+
+      <div style="font-size:12px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.5px; margin:12px 0 8px;">🎮 Block 2 — 2 Hours</div>
+      <ul class="timeline">
+        <li>
+          <span class="time-badge">0–80 min</span>
+          <span class="label">Hands-On: Build a Chess Skill
+            <span class="sublabel">① What is a Skill &amp; how it extends the agent · ② 2 kids per machine take turns vibe coding the Lichess chess skill — describing what they want, AI builds it · ③ Once built, kids use WhatsApp to challenge the AI to a chess game using the skill they just created · ④ Level up — enhance the skill by integrating Stockfish engine so the AI plays smarter, not just follows moves</span>
+          </span>
+        </li>
+        <li>
+          <span class="time-badge">80–100 min</span>
+          <span class="label">Explore &amp; Experiment
+            <span class="sublabel">Try your own ideas · live internet search via Brave API</span>
+          </span>
+        </li>
+        <li>
+          <span class="time-badge">100–120 min</span>
+          <span class="label">Q&amp;A + Wrap-up
+            <span class="sublabel">Questions, takeaways, what to do next</span>
+          </span>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- WHAT KIDS WILL LEARN -->
+  <div class="section">
+    <div class="section-label">
+      <span class="icon">📚</span>
+      <h2>What Your Child Will Learn</h2>
+    </div>
+    <div class="card">
+      <span class="tag req">✅ Core — Everyone Covers These</span>
+      <ul class="topic-list">
+        <li><span class="dot req"></span>What an AI agent is vs a regular chatbot</li>
+        <li><span class="dot req"></span>How AI memory works — it remembers you over time</li>
+        <li><span class="dot req"></span>What AI can and cannot do — and why that matters</li>
+        <li><span class="dot req"></span>How to give clear instructions (prompting) for better results</li>
+        <li><span class="dot req"></span>What tokens are and how to spend them responsibly</li>
+        <li><span class="dot req"></span>Vibe coding — directing AI to build things in plain English</li>
+        <li><span class="dot req"></span>How to build a custom Skill (chess via Lichess)</li>
+        <li><span class="dot req"></span>Safe and responsible AI use</li>
+      </ul>
+      <div class="divider"></div>
+      <span class="tag opt">⭐ Bonus — If Time Allows</span>
+      <ul class="topic-list">
+        <li><span class="dot opt"></span>Set up on their own device (Mac/PC)</li>
+        <li><span class="dot opt"></span>Build a second custom skill of their choice</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- USAGE MODEL -->
+  <div class="section">
+    <div class="section-label">
+      <span class="icon">⚡</span>
+      <h2>AI Usage — How It Works</h2>
+    </div>
+    <div class="card">
+      <p class="what-text">Every message sent to the agent uses AI credits (tokens). We recommend a two-stage approach based on your child's progress:</p>
+      <div class="stage-grid">
+        <div class="stage-box active">
+          <div class="stage-label active">✅ Stage 1 — Start Here</div>
+          <div class="stage-title">OpenRouter — $20 Credit</div>
+          <div class="stage-desc">Pay-as-you-go, no expiry. Choose any AI model. No credit = no response — simple and transparent. Ideal while usage habits are still unknown. With responsible prompting, $20 should last well beyond the session.</div>
+        </div>
+        <div class="stage-box later">
+          <div class="stage-label later">⏳ Stage 2 — When Ready</div>
+          <div class="stage-title">GPT Plus $30/mo + OpenRouter as Fallback</div>
+          <div class="stage-desc">Once your child understands token responsibility, upgrade to GPT Plus for a fixed monthly cost. Use OpenRouter as a fallback when the weekly limit is reached. Only move here when you're confident in their prompting habits.</div>
+        </div>
+      </div>
+      <div class="alert" style="margin-top:12px;">
+        ⚠️ <strong>Why not GPT Plus from day one?</strong> GPT Plus has an unpredictable weekly usage limit. Hitting the limit mid-session means the agent goes silent for the rest of the week — with no warning. Frustrating for kids, confusing for parents.
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTMENT -->
+  <div class="section">
+    <div class="section-label">
+      <span class="icon">💰</span>
+      <h2>Cost to Set Up at Home</h2>
+    </div>
+    <div class="card">
+      <p class="what-text">The session runs on 2 machines — 2 kids per machine, building together. If your child wants their own setup at home, OpenClaw runs on any computer — an old PC or Mac works just fine. Costs below are based on a fresh Mac Mini.</p>
+      <div class="cost-row">
+        <div class="cost-item">Mac Mini <span>One-time · optional — any old PC/Mac works too</span></div>
+        <span class="cost-price">SGD 849</span>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">eSIM Data Plan <span>Monthly · a separate number for your agent's own WhatsApp account — so anyone can chat with it</span></div>
+        <span class="cost-price">SGD 4.90 / mo</span>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">Brave Search API <span>Monthly · 1,000 searches · shareable</span></div>
+        <span class="cost-price">USD 5 / mo</span>
+      </div>
+      <div class="cost-row">
+        <div class="cost-item">OpenRouter AI Credits <span>Start with $20 · top up as needed · no expiry</span></div>
+        <span class="cost-price">USD 20 to start</span>
+      </div>
+      <div class="cost-total">
+        <span>Monthly running cost</span>
+        <span>~SGD 12 / mo</span>
+      </div>
+      <p class="note-text">💡 If you don't have a spare machine, a new Mac Mini is SGD 849. OpenClaw itself is free &amp; open source.</p>
+      <p class="note-text">💡 OpenClaw is free &amp; open source. Costs above are for hardware and third-party API services only.</p>
+    </div>
+  </div>
+
+  <!-- BEFORE YOU ARRIVE -->
+  <div class="section">
+    <div class="section-label">
+      <span class="icon">✏️</span>
+      <h2>Before You Arrive</h2>
+    </div>
+    <div class="prep-box">
+      <h3>One thing to prepare</h3>
+      <div class="tip-grid">
+        <div class="tip"><span class="tip-icon">🦞</span><span><strong>Think of a name for your agent — and why that name.</strong> The "why" helps shape its persona. Is it serious or playful? Formal or friendly? A strong character makes the agent feel truly yours.</span></div>
+        <div class="tip"><span class="tip-icon">💻</span><span><strong>Bringing an old laptop?</strong> Great — we can set it up on the spot. But make sure it has <strong>no sensitive personal data</strong> stored on it. Once OpenClaw is installed, the agent will have access to everything on that machine — files, folders, all of it.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPS FOR KIDS -->
+  <div class="section">
+    <div class="section-label">
+      <span class="icon">💡</span>
+      <h2>Tips for Your Child</h2>
+    </div>
+    <div class="card">
+      <div class="tip-grid">
+        <div class="tip"><span class="tip-icon">🎯</span><span>Be specific — the clearer the instruction, the better the result</span></div>
+        <div class="tip"><span class="tip-icon">🔁</span><span>If it gets something wrong, just tell it what to fix</span></div>
+        <div class="tip"><span class="tip-icon">💸</span><span>Shorter, clearer prompts use fewer tokens — say more with less</span></div>
+        <div class="tip"><span class="tip-icon">🔬</span><span>Experiment freely — you can't break it by asking questions</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOR PARENTS AFTER -->
+  <div class="section">
+    <div class="section-label">
+      <span class="icon">👨‍👩‍👧</span>
+      <h2>For Parents — After the Session</h2>
+    </div>
+    <div class="card">
+      <div class="parent-block">
+        <h3>Talk about it with your child</h3>
+        <ul class="check-list">
+          <li><span class="chk">→</span>What was the coolest thing they made the agent do?</li>
+          <li><span class="chk">→</span>Can they explain "vibe coding" in their own words?</li>
+          <li><span class="chk">→</span>What Skill would they build next if they had their own setup?</li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="parent-block">
+        <h3>Safety reminders</h3>
+        <ul class="check-list">
+          <li><span class="chk">⚠</span>Always supervise setup — agent has access to files &amp; internet</li>
+          <li><span class="chk">⚠</span>Never share passwords or personal info with any AI</li>
+          <li><span class="chk">⚠</span>AI can make mistakes — double-check important answers</li>
+          <li><span class="chk">⚠</span>Monitor credit usage — set a monthly top-up budget</li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="parent-block">
+        <h3>⚠️ Warning: Downloading Skills</h3>
+        <ul class="check-list">
+          <li><span class="chk">🚫</span>ClawHub has unlimited community-built skills to download</li>
+          <li><span class="chk">🚫</span>But OpenClaw is open source — <strong>anyone</strong> can publish a skill</li>
+          <li><span class="chk">🚫</span>A malicious skill could give a hacker full access to your machine</li>
+          <li><span class="chk">✓</span>If you want a skill you found online — ask your agent to build it instead. Same result, zero risk.</li>
+        </ul>
+        <div class="danger">
+          🔴 Treat downloading Skills like installing an app from an unknown developer. When in doubt — don't install it.
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="parent-block" style="margin-bottom:0">
+        <h3>Useful links</h3>
+        <ul class="check-list">
+          <li><span class="chk">✓</span>openclaw.ai — official site</li>
+          <li><span class="chk">✓</span>docs.openclaw.ai — full documentation</li>
+          <li><span class="chk">✓</span>discord.gg/clawd — community &amp; support</li>
+          <li><span class="chk">✓</span>lichess.org — free chess platform used in session</li>
+          <li><span class="chk">✓</span>openrouter.ai — manage AI credits</li>
+        </ul>
+      </div>
+      <div class="alert">
+        💬 Questions after today? Reach out to <strong>Uncle BC</strong> on WhatsApp at <strong>98315644</strong>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <strong style="color:rgba(255,255,255,0.8);">Your First AI Agent: Vibe Coding for Tweens</strong><br>
+  <a href="https://openclaw.ai">openclaw.ai</a> &nbsp;·&nbsp;
+  <a href="https://docs.openclaw.ai">docs.openclaw.ai</a> &nbsp;·&nbsp;
+  <a href="https://openrouter.ai">openrouter.ai</a><br>
+  <span style="color:rgba(255,255,255,0.3); font-size:11px;">v0.2 · Updated March 2026</span>
+</div>
+
+</body>
+</html>
