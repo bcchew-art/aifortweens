@@ -21,231 +21,230 @@
     --red-bg: #fff0f0;
   }
 
-@media (prefers-color-scheme: dark) {
-:root {
-–navy: #0a1628;
-–blue: #5b9fff;
-–teal: #00d4c0;
-–soft: #111b2e;
-–card: #1a2640;
-–text: #e8eef8;
-–muted: #8fa0bc;
-–tag-req: #1a2e50;
-–tag-opt: #0f2e2b;
-–border: #1f3050;
-–red: #ff6b6b;
-–red-bg: #2a1010;
-}
-body { background: #0d1520; }
-.meta-row, .topic-list li, .timeline li, .check-list li, .cost-row, .compare-row { border-bottom-color: #1f3050; }
-.tip { background: #0f1e34; }
-.tag.req { color: var(–blue); background: #1a2e50; }
-.tag.opt { color: var(–teal); background: #0f2e2b; }
-.time-badge { background: #0f1e34; color: var(–blue); }
-.lunch-row { background: #0f2a1a; }
-.alert { background: #2a1f00; border-left-color: #f0a500; color: #f0c050; }
-.danger { background: #2a1010; border-left-color: var(–red); color: #ffaaaa; }
-.prep-box { background: #0f1e34; border-color: var(–teal); }
-.prep-box h3 { color: var(–teal); }
-.cost-total { background: #0f1e34; }
-.stage-box { background: #0f1e34; }
-.stage-box.active { border-color: var(–teal); }
-.stage-box.later { border-color: #2e4060; }
-.stage-label.active { color: var(–teal); }
-.stage-label.later { color: var(–muted); }
-.vibe-col { background: #0f1e34; }
-.vibe-col.vibe { border-color: var(–teal); }
-.vibe-col h4.trad { color: var(–muted); }
-.vibe-col h4.vibe { color: var(–teal); }
-.section-label h2 { color: #ffffff !important; }
-.what-text, .note-text { color: #a8bcd4; }
-.parent-block h3 { color: #8fa0bc; }
-.key-msg { background: #0f2a1a; border-color: var(–teal); color: #a0d8cc; }
-}
-
-- { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-  font-family: ‘DM Sans’, sans-serif;
-  background: var(–soft);
-  color: var(–text);
-  font-size: 15px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --navy: #0a1628;
+      --blue: #5b9fff;
+      --teal: #00d4c0;
+      --soft: #111b2e;
+      --card: #1a2640;
+      --text: #e8eef8;
+      --muted: #8fa0bc;
+      --tag-req: #1a2e50;
+      --tag-opt: #0f2e2b;
+      --border: #1f3050;
+      --red: #ff6b6b;
+      --red-bg: #2a1010;
+    }
+    body { background: #0d1520; }
+    .meta-row, .topic-list li, .timeline li, .check-list li, .cost-row, .compare-row { border-bottom-color: #1f3050; }
+    .tip { background: #0f1e34; }
+    .tag.req { color: var(--blue); background: #1a2e50; }
+    .tag.opt { color: var(--teal); background: #0f2e2b; }
+    .time-badge { background: #0f1e34; color: var(--blue); }
+    .lunch-row { background: #0f2a1a; }
+    .alert { background: #2a1f00; border-left-color: #f0a500; color: #f0c050; }
+    .danger { background: #2a1010; border-left-color: var(--red); color: #ffaaaa; }
+    .prep-box { background: #0f1e34; border-color: var(--teal); }
+    .prep-box h3 { color: var(--teal); }
+    .cost-total { background: #0f1e34; }
+    .stage-box { background: #0f1e34; }
+    .stage-box.active { border-color: var(--teal); }
+    .stage-box.later { border-color: #2e4060; }
+    .stage-label.active { color: var(--teal); }
+    .stage-label.later { color: var(--muted); }
+    .vibe-col { background: #0f1e34; }
+    .vibe-col.vibe { border-color: var(--teal); }
+    .vibe-col h4.trad { color: var(--muted); }
+    .vibe-col h4.vibe { color: var(--teal); }
+    .section-label h2 { color: #ffffff !important; }
+    .what-text, .note-text { color: #a8bcd4; }
+    .parent-block h3 { color: #8fa0bc; }
+    .key-msg { background: #0f2a1a; border-color: var(--teal); color: #a0d8cc; }
   }
 
-/* ── HERO ── */
-.hero {
-background: var(–navy);
-padding: 36px 24px 32px;
-text-align: center;
-position: relative;
-overflow: hidden;
-}
-.hero::before { content: ‘’; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(0,191,174,0.18) 0%, transparent 70%); }
-.hero::after { content: ‘’; position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(26,111,255,0.2) 0%, transparent 70%); }
-.hero-emoji { font-size: 48px; display: block; margin-bottom: 12px; }
-.hero h1 { font-family: ‘DM Serif Display’, serif; font-size: 28px; color: #fff; line-height: 1.2; margin-bottom: 8px; }
-.hero p { color: rgba(255,255,255,0.65); font-size: 14px; }
-.hero-pills { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-.pill { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--soft);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-/* ── LAYOUT ── */
-.content { padding: 0 16px 40px; max-width: 520px; margin: 0 auto; }
-.section { margin-top: 28px; }
-.section-label { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-.section-label .icon { font-size: 18px; }
-.section-label h2 { font-family: ‘DM Serif Display’, serif; font-size: 18px; color: var(–navy); }
-.card { background: var(–card); border-radius: 14px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-.what-text { font-size: 14px; color: var(–muted); line-height: 1.65; margin-bottom: 14px; }
-.note-text { font-size: 12.5px; color: var(–muted); margin-top: 10px; font-style: italic; }
-.divider { height: 1px; background: linear-gradient(to right, transparent, var(–border), transparent); margin: 14px 0; }
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 36px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(0,191,174,0.18) 0%, transparent 70%); }
+  .hero::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(26,111,255,0.2) 0%, transparent 70%); }
+  .hero-emoji { font-size: 48px; display: block; margin-bottom: 12px; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 28px; color: #fff; line-height: 1.2; margin-bottom: 8px; }
+  .hero p { color: rgba(255,255,255,0.65); font-size: 14px; }
+  .hero-pills { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .pill { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); }
 
-/* ── META ── */
-.meta-row { display: flex; gap: 6px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(–border); font-size: 13.5px; }
-.meta-row:last-child { border-bottom: none; }
-.meta-key { color: var(–muted); width: 80px; flex-shrink: 0; }
-.meta-val { color: var(–text); font-weight: 500; }
+  /* ── LAYOUT ── */
+  .content { padding: 0 16px 40px; max-width: 520px; margin: 0 auto; }
+  .section { margin-top: 28px; }
+  .section-label { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .section-label .icon { font-size: 18px; }
+  .section-label h2 { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--navy); }
+  .card { background: var(--card); border-radius: 14px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .what-text { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+  .note-text { font-size: 12.5px; color: var(--muted); margin-top: 10px; font-style: italic; }
+  .divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 14px 0; }
 
-/* ── VIBE CODING COMPARE ── */
-.vibe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.vibe-col { background: var(–soft); border-radius: 12px; padding: 12px 14px; border: 1.5px solid var(–border); }
-.vibe-col.vibe { border-color: var(–teal); }
-.vibe-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-.vibe-col h4.trad { color: var(–muted); }
-.vibe-col h4.vibe { color: #007a70; }
-.vibe-col ul { list-style: none; }
-.vibe-col ul li { font-size: 12.5px; padding: 4px 0; border-bottom: 1px solid var(–border); display: flex; gap: 6px; }
-.vibe-col ul li:last-child { border-bottom: none; }
-.vibe-col ul li .vi { flex-shrink: 0; }
-.key-msg { background: #e8faf8; border: 1.5px solid var(–teal); border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #005e57; margin-top: 4px; line-height: 1.6; }
+  /* ── META ── */
+  .meta-row { display: flex; gap: 6px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+  .meta-row:last-child { border-bottom: none; }
+  .meta-key { color: var(--muted); width: 80px; flex-shrink: 0; }
+  .meta-val { color: var(--text); font-weight: 500; }
 
-/* ── TAG ── */
-.tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-bottom: 10px; }
-.tag.req { background: var(–tag-req); color: var(–blue); }
-.tag.opt { background: var(–tag-opt); color: #008f83; }
+  /* ── VIBE CODING COMPARE ── */
+  .vibe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .vibe-col { background: var(--soft); border-radius: 12px; padding: 12px 14px; border: 1.5px solid var(--border); }
+  .vibe-col.vibe { border-color: var(--teal); }
+  .vibe-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .vibe-col h4.trad { color: var(--muted); }
+  .vibe-col h4.vibe { color: #007a70; }
+  .vibe-col ul { list-style: none; }
+  .vibe-col ul li { font-size: 12.5px; padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; gap: 6px; }
+  .vibe-col ul li:last-child { border-bottom: none; }
+  .vibe-col ul li .vi { flex-shrink: 0; }
+  .key-msg { background: #e8faf8; border: 1.5px solid var(--teal); border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #005e57; margin-top: 4px; line-height: 1.6; }
 
-/* ── TOPIC LIST ── */
-.topic-list { list-style: none; }
-.topic-list li { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 14px; border-bottom: 1px solid var(–border); }
-.topic-list li:last-child { border-bottom: none; }
-.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
-.dot.req { background: var(–blue); }
-.dot.opt { background: var(–teal); }
+  /* ── TAG ── */
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-bottom: 10px; }
+  .tag.req { background: var(--tag-req); color: var(--blue); }
+  .tag.opt { background: var(--tag-opt); color: #008f83; }
 
-/* ── TIMELINE ── */
-.timeline { list-style: none; }
-.timeline li { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(–border); font-size: 13.5px; }
-.timeline li:last-child { border-bottom: none; }
-.timeline li .label { flex: 1; }
-.timeline li .sublabel { font-size: 12px; color: var(–muted); display: block; margin-top: 2px; }
-.time-badge { background: var(–soft); color: var(–blue); font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
-.lunch-row { background: #edfff8; border-radius: 10px; padding: 10px 14px; margin: 6px 0; display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #007a50; border: 1px solid #b2edd0; }
+  /* ── TOPIC LIST ── */
+  .topic-list { list-style: none; }
+  .topic-list li { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 14px; border-bottom: 1px solid var(--border); }
+  .topic-list li:last-child { border-bottom: none; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .dot.req { background: var(--blue); }
+  .dot.opt { background: var(--teal); }
 
-/* ── COST ── */
-.cost-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(–border); font-size: 13.5px; gap: 12px; }
-.cost-row:last-of-type { border-bottom: none; }
-.cost-item { flex: 1; }
-.cost-item span { display: block; font-size: 11.5px; color: var(–muted); margin-top: 1px; }
-.cost-price { font-weight: 600; color: var(–text); white-space: nowrap; }
-.cost-total { background: var(–soft); border-radius: 10px; padding: 10px 14px; margin-top: 12px; display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600; }
+  /* ── TIMELINE ── */
+  .timeline { list-style: none; }
+  .timeline li { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+  .timeline li:last-child { border-bottom: none; }
+  .timeline li .label { flex: 1; }
+  .timeline li .sublabel { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; }
+  .time-badge { background: var(--soft); color: var(--blue); font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+  .lunch-row { background: #edfff8; border-radius: 10px; padding: 10px 14px; margin: 6px 0; display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: #007a50; border: 1px solid #b2edd0; }
 
-/* ── USAGE STAGES ── */
-.stage-grid { display: flex; flex-direction: column; gap: 10px; }
-.stage-box { border-radius: 12px; padding: 13px 15px; background: var(–soft); border: 1.5px solid var(–border); }
-.stage-box.active { border-color: var(–teal); }
-.stage-box.later { border-color: var(–border); opacity: 0.85; }
-.stage-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-.stage-label.active { color: #007a70; }
-.stage-label.later { color: var(–muted); }
-.stage-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-.stage-desc { font-size: 13px; color: var(–muted); }
+  /* ── COST ── */
+  .cost-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; gap: 12px; }
+  .cost-row:last-of-type { border-bottom: none; }
+  .cost-item { flex: 1; }
+  .cost-item span { display: block; font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+  .cost-price { font-weight: 600; color: var(--text); white-space: nowrap; }
+  .cost-total { background: var(--soft); border-radius: 10px; padding: 10px 14px; margin-top: 12px; display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600; }
 
-/* ── TIPS ── */
-.tip-grid { display: flex; flex-direction: column; gap: 10px; }
-.tip { display: flex; gap: 12px; align-items: flex-start; background: var(–soft); border-radius: 10px; padding: 11px 14px; font-size: 13.5px; }
-.tip .tip-icon { font-size: 18px; flex-shrink: 0; }
+  /* ── USAGE STAGES ── */
+  .stage-grid { display: flex; flex-direction: column; gap: 10px; }
+  .stage-box { border-radius: 12px; padding: 13px 15px; background: var(--soft); border: 1.5px solid var(--border); }
+  .stage-box.active { border-color: var(--teal); }
+  .stage-box.later { border-color: var(--border); opacity: 0.85; }
+  .stage-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .stage-label.active { color: #007a70; }
+  .stage-label.later { color: var(--muted); }
+  .stage-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .stage-desc { font-size: 13px; color: var(--muted); }
 
-/* ── PREP BOX ── */
-.prep-box { border: 1.5px solid var(–teal); border-radius: 12px; padding: 14px 16px; }
-.prep-box h3 { font-size: 13px; font-weight: 600; color: #007a70; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  /* ── TIPS ── */
+  .tip-grid { display: flex; flex-direction: column; gap: 10px; }
+  .tip { display: flex; gap: 12px; align-items: flex-start; background: var(--soft); border-radius: 10px; padding: 11px 14px; font-size: 13.5px; }
+  .tip .tip-icon { font-size: 18px; flex-shrink: 0; }
 
-/* ── PARENT NOTES ── */
-.parent-block { margin-bottom: 14px; }
-.parent-block h3 { font-size: 13px; font-weight: 600; color: var(–muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-.check-list { list-style: none; }
-.check-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; padding: 5px 0; border-bottom: 1px solid var(–border); }
-.check-list li:last-child { border-bottom: none; }
-.chk { color: var(–teal); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  /* ── PREP BOX ── */
+  .prep-box { border: 1.5px solid var(--teal); border-radius: 12px; padding: 14px 16px; }
+  .prep-box h3 { font-size: 13px; font-weight: 600; color: #007a70; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
 
-/* ── ALERTS ── */
-.alert { background: #fff8e6; border-left: 3px solid #f0a500; border-radius: 0 10px 10px 0; padding: 12px 14px; font-size: 13px; color: #7a5500; margin-top: 12px; }
-.danger { background: var(–red-bg); border-left: 3px solid var(–red); border-radius: 0 10px 10px 0; padding: 12px 14px; font-size: 13px; color: #a00000; margin-top: 10px; line-height: 1.6; }
+  /* ── PARENT NOTES ── */
+  .parent-block { margin-bottom: 14px; }
+  .parent-block h3 { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .check-list { list-style: none; }
+  .check-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; padding: 5px 0; border-bottom: 1px solid var(--border); }
+  .check-list li:last-child { border-bottom: none; }
+  .chk { color: var(--teal); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
 
-/* ── DONT ITEMS ── */
-.dont-item { padding: 4px 0 8px; }
-.dont-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 14px; }
-.dont-icon { font-size: 20px; flex-shrink: 0; }
-.dont-body { font-size: 13.5px; color: var(–muted); line-height: 1.65; margin-bottom: 8px; }
-.dont-lesson { background: var(–soft); border-left: 3px solid var(–teal); border-radius: 0 8px 8px 0; padding: 8px 12px; font-size: 13px; color: var(–text); }
-@media (prefers-color-scheme: dark) { .dont-lesson { background: #0f1e34; } }
+  /* ── ALERTS ── */
+  .alert { background: #fff8e6; border-left: 3px solid #f0a500; border-radius: 0 10px 10px 0; padding: 12px 14px; font-size: 13px; color: #7a5500; margin-top: 12px; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red); border-radius: 0 10px 10px 0; padding: 12px 14px; font-size: 13px; color: #a00000; margin-top: 10px; line-height: 1.6; }
 
-/* ── FOOTER ── */
-.footer { background: var(–navy); padding: 20px 24px; text-align: center; color: rgba(255,255,255,0.5); font-size: 12px; line-height: 1.6; margin-top: 12px; }
-.footer a { color: var(–teal); text-decoration: none; }
+  /* ── DONT ITEMS ── */
+  .dont-item { padding: 4px 0 8px; }
+  .dont-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 14px; }
+  .dont-icon { font-size: 20px; flex-shrink: 0; }
+  .dont-body { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 8px; }
+  .dont-lesson { background: var(--soft); border-left: 3px solid var(--teal); border-radius: 0 8px 8px 0; padding: 8px 12px; font-size: 13px; color: var(--text); }
+  @media (prefers-color-scheme: dark) { .dont-lesson { background: #0f1e34; } }
 
-/* ── INTRO CARD ── */
-.intro-card { background: linear-gradient(135deg, #e8f4ff 0%, #e6faf7 100%); border: 1.5px solid var(–teal); border-radius: 14px; padding: 18px 20px; margin-top: 20px; }
-.intro-card p { font-size: 15px; line-height: 1.75; color: var(–text); }
-.intro-card .intro-title { font-family: ‘DM Serif Display’, serif; font-size: 16px; color: #005e57; margin-bottom: 8px; }
-@media (prefers-color-scheme: dark) {
-.intro-card { background: linear-gradient(135deg, #0f1e34 0%, #0f2a24 100%); border-color: var(–teal); }
-.intro-card p { color: var(–text); }
-.intro-card .intro-title { color: var(–teal); }
-}
+  /* ── FOOTER ── */
+  .footer { background: var(--navy); padding: 20px 24px; text-align: center; color: rgba(255,255,255,0.5); font-size: 12px; line-height: 1.6; margin-top: 12px; }
+  .footer a { color: var(--teal); text-decoration: none; }
 
-/* ── TOOLTIPS ── */
-.tip-word { border-bottom: 1.5px dashed var(–teal); cursor: pointer; position: relative; display: inline-block; color: inherit; white-space: nowrap; }
-.tip-word::after {
-content: attr(data-tip);
-position: fixed;
-bottom: auto;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: var(–navy);
-color: #fff;
-font-size: 13px;
-line-height: 1.6;
-padding: 12px 16px;
-border-radius: 12px;
-white-space: normal;
-width: 260px;
-text-align: left;
-pointer-events: none;
-opacity: 0;
-transition: opacity 0.2s;
-z-index: 1000;
-box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-}
-.tip-word::before {
-display: none;
-}
-.tip-word::before {
-content: ‘’;
-position: absolute;
-bottom: calc(100% + 2px);
-left: 50%;
-transform: translateX(-50%);
-border: 5px solid transparent;
-border-top-color: var(–navy);
-opacity: 0;
-transition: opacity 0.2s;
-z-index: 100;
-}
-.tip-word:hover::after, .tip-word:hover::before,
-.tip-word.active::after, .tip-word.active::before { opacity: 1; }
+  /* ── INTRO CARD ── */
+  .intro-card { background: linear-gradient(135deg, #e8f4ff 0%, #e6faf7 100%); border: 1.5px solid var(--teal); border-radius: 14px; padding: 18px 20px; margin-top: 20px; }
+  .intro-card p { font-size: 15px; line-height: 1.75; color: var(--text); }
+  .intro-card .intro-title { font-family: 'DM Serif Display', serif; font-size: 16px; color: #005e57; margin-bottom: 8px; }
+  @media (prefers-color-scheme: dark) {
+    .intro-card { background: linear-gradient(135deg, #0f1e34 0%, #0f2a24 100%); border-color: var(--teal); }
+    .intro-card p { color: var(--text); }
+    .intro-card .intro-title { color: var(--teal); }
+  }
+
+  /* ── TOOLTIPS ── */
+  .tip-word { border-bottom: 1.5px dashed var(--teal); cursor: pointer; position: relative; display: inline-block; color: inherit; white-space: nowrap; }
+  .tip-word::after {
+    content: attr(data-tip);
+    position: fixed;
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--navy);
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 12px 16px;
+    border-radius: 12px;
+    white-space: normal;
+    width: 260px;
+    text-align: left;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 1000;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+  .tip-word::before {
+    display: none;
+  }
+  .tip-word::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--navy);
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+  }
+  .tip-word:hover::after, .tip-word:hover::before,
+  .tip-word.active::after, .tip-word.active::before { opacity: 1; }
 </style>
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.tip-word').forEach(el => {
@@ -262,7 +261,6 @@ z-index: 100;
     });
   });
 </script>
-
 </head>
 <body>
 
@@ -306,14 +304,12 @@ z-index: 100;
 <div class="content">
 
   <!-- PLAIN ENGLISH INTRO -->
-
   <div class="intro-card">
     <div class="intro-title">👋 What's happening today — in plain English</div>
     <p>Today you'll meet an AI that lives on a computer and chats through WhatsApp. You'll give it a name, watch it remember things, and then — together — build a brand new ability for it from scratch. By the end of the day, you'll be able to WhatsApp it and challenge it to a game of chess. No coding experience needed. Not for the kids, not for you.</p>
   </div>
 
   <!-- WHAT IS OPENCLAW -->
-
   <div class="section">
     <div class="section-label">
       <span class="icon">🤖</span>
@@ -329,7 +325,6 @@ z-index: 100;
   </div>
 
   <!-- WHAT IS VIBE CODING -->
-
   <div class="section">
     <div class="section-label">
       <span class="icon">🎮</span>
@@ -366,7 +361,6 @@ z-index: 100;
   </div>
 
   <!-- SESSION TIMELINE -->
-
   <div class="section">
     <div class="section-label">
       <span class="icon">⏱️</span>
@@ -374,60 +368,56 @@ z-index: 100;
     </div>
     <div class="card">
 
-```
-  <div style="font-size:12px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">🌅 Block 1 — 2 Hours</div>
-  <ul class="timeline">
-    <li>
-      <span class="time-badge">0–30 min</span>
-      <span class="label">Concepts &amp; What is OpenClaw
-        <span class="sublabel">AI agent vs chatbot · how memory works · what it can &amp; can't do</span>
-      </span>
-    </li>
-    <li>
-      <span class="time-badge">30–60 min</span>
-      <span class="label">Responsible Use &amp; How AI Credits Work
-        <span class="sublabel">Dos &amp; don'ts · every message costs a tiny bit of credit — learn to use it wisely · vibe coding intro</span>
-      </span>
-    </li>
-    <li>
-      <span class="time-badge">60–120 min</span>
-      <span class="label">Setup &amp; Getting Connected
-        <span class="sublabel">Install the agent on the Mac Mini · load it with AI credits · connect it to WhatsApp so kids can chat with it</span>
-      </span>
-    </li>
-  </ul>
+      <div style="font-size:12px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">🌅 Block 1 — 2 Hours</div>
+      <ul class="timeline">
+        <li>
+          <span class="time-badge">0–30 min</span>
+          <span class="label">Concepts &amp; What is OpenClaw
+            <span class="sublabel">AI agent vs chatbot · how memory works · what it can &amp; can't do</span>
+          </span>
+        </li>
+        <li>
+          <span class="time-badge">30–60 min</span>
+          <span class="label">Responsible Use &amp; How AI Credits Work
+            <span class="sublabel">Dos &amp; don'ts · every message costs a tiny bit of credit — learn to use it wisely · vibe coding intro</span>
+          </span>
+        </li>
+        <li>
+          <span class="time-badge">60–120 min</span>
+          <span class="label">Setup &amp; Getting Connected
+            <span class="sublabel">Install the agent on the Mac Mini · load it with AI credits · connect it to WhatsApp so kids can chat with it</span>
+          </span>
+        </li>
+      </ul>
 
-  <div class="lunch-row" style="margin-top:10px;">🍱 Lunch Break</div>
+      <div class="lunch-row" style="margin-top:10px;">🍱 Lunch Break</div>
 
-  <div style="font-size:12px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.5px; margin:12px 0 8px;">🎮 Block 2 — 2 Hours</div>
-  <ul class="timeline">
-    <li>
-      <span class="time-badge">0–80 min</span>
-      <span class="label">Hands-On: Build a Chess Skill
-        <span class="sublabel">① What is a Skill &amp; how it gives the agent new abilities · ② Kids take turns telling the AI what to build — it writes the code for them · ③ Once built, kids WhatsApp the agent and challenge it to a chess game · ④ Level up — make the AI play smarter by adding a stronger chess engine</span>
-      </span>
-    </li>
-    <li>
-      <span class="time-badge">80–100 min</span>
-      <span class="label">Explore &amp; Experiment
-        <span class="sublabel">Try your own ideas · ask the agent to search the web in real time</span>
-      </span>
-    </li>
-    <li>
-      <span class="time-badge">100–120 min</span>
-      <span class="label">Q&amp;A + Wrap-up
-        <span class="sublabel">Questions, takeaways, what to do next</span>
-      </span>
-    </li>
-  </ul>
+      <div style="font-size:12px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.5px; margin:12px 0 8px;">🎮 Block 2 — 2 Hours</div>
+      <ul class="timeline">
+        <li>
+          <span class="time-badge">0–80 min</span>
+          <span class="label">Hands-On: Build a Chess Skill
+            <span class="sublabel">① What is a Skill &amp; how it gives the agent new abilities · ② Kids take turns telling the AI what to build — it writes the code for them · ③ Once built, kids WhatsApp the agent and challenge it to a chess game · ④ Level up — make the AI play smarter by adding a stronger chess engine</span>
+          </span>
+        </li>
+        <li>
+          <span class="time-badge">80–100 min</span>
+          <span class="label">Explore &amp; Experiment
+            <span class="sublabel">Try your own ideas · ask the agent to search the web in real time</span>
+          </span>
+        </li>
+        <li>
+          <span class="time-badge">100–120 min</span>
+          <span class="label">Q&amp;A + Wrap-up
+            <span class="sublabel">Questions, takeaways, what to do next</span>
+          </span>
+        </li>
+      </ul>
 
-</div>
-```
-
+    </div>
   </div>
 
   <!-- WHAT KIDS WILL LEARN -->
-
   <div class="section">
     <div class="section-label">
       <span class="icon">📚</span>
@@ -455,7 +445,6 @@ z-index: 100;
   </div>
 
   <!-- USAGE MODEL -->
-
   <div class="section">
     <div class="section-label">
       <span class="icon">⚡</span>
@@ -482,7 +471,6 @@ z-index: 100;
   </div>
 
   <!-- INVESTMENT -->
-
   <div class="section">
     <div class="section-label">
       <span class="icon">💰</span>
@@ -516,7 +504,6 @@ z-index: 100;
   </div>
 
   <!-- BEFORE YOU ARRIVE -->
-
   <div class="section">
     <div class="section-label">
       <span class="icon">✏️</span>
@@ -532,7 +519,6 @@ z-index: 100;
   </div>
 
   <!-- TIPS FOR KIDS -->
-
   <div class="section">
     <div class="section-label">
       <span class="icon">💡</span>
@@ -549,7 +535,6 @@ z-index: 100;
   </div>
 
   <!-- WHAT NOT TO DO -->
-
   <div class="section">
     <div class="section-label">
       <span class="icon">🚫</span>
@@ -558,44 +543,40 @@ z-index: 100;
     <div class="card">
       <p class="what-text">The agent is powerful. That's exactly why it needs to be used responsibly. These aren't just rules — they're real concepts that even adult developers get wrong.</p>
 
-```
-  <div class="dont-item">
-    <div class="dont-header"><span class="dont-icon">🔑</span><strong>Never save secret keys in plain text</strong></div>
-    <p class="dont-body">When the agent connects to services like OpenRouter or Brave Search, it uses a secret <span class="tip-word" data-tip="An API key is like a password for a service. Anyone who gets it can use it as if they were you — and rack up charges.">API key</span>. Never write it in a WhatsApp message, a notes app, or a text file on your desktop. If someone finds it, they can use your account and spend your credits.</p>
-    <div class="dont-lesson">💡 Rule: API keys live only in the agent's config file — nowhere else.</div>
-  </div>
+      <div class="dont-item">
+        <div class="dont-header"><span class="dont-icon">🔑</span><strong>Never save secret keys in plain text</strong></div>
+        <p class="dont-body">When the agent connects to services like OpenRouter or Brave Search, it uses a secret <span class="tip-word" data-tip="An API key is like a password for a service. Anyone who gets it can use it as if they were you — and rack up charges.">API key</span>. Never write it in a WhatsApp message, a notes app, or a text file on your desktop. If someone finds it, they can use your account and spend your credits.</p>
+        <div class="dont-lesson">💡 Rule: API keys live only in the agent's config file — nowhere else.</div>
+      </div>
 
-  <div class="divider"></div>
+      <div class="divider"></div>
 
-  <div class="dont-item">
-    <div class="dont-header"><span class="dont-icon">🏠</span><strong>Don't connect the agent to smart home devices without understanding the risk</strong></div>
-    <p class="dont-body">OpenClaw can be given Skills to control things like Google Home, smart plugs, or door locks. That's exciting — but if someone sends a WhatsApp message to your agent pretending to be you, or if the agent misunderstands an instruction, it could unlock your front door, turn off your alarm, or switch off your router. This isn't sci-fi — it's how these systems work.</p>
-    <div class="dont-lesson">💡 Rule: Never give the agent control of anything physical without a parent reviewing the Skill first.</div>
-  </div>
+      <div class="dont-item">
+        <div class="dont-header"><span class="dont-icon">🏠</span><strong>Don't connect the agent to smart home devices without understanding the risk</strong></div>
+        <p class="dont-body">OpenClaw can be given Skills to control things like Google Home, smart plugs, or door locks. That's exciting — but if someone sends a WhatsApp message to your agent pretending to be you, or if the agent misunderstands an instruction, it could unlock your front door, turn off your alarm, or switch off your router. This isn't sci-fi — it's how these systems work.</p>
+        <div class="dont-lesson">💡 Rule: Never give the agent control of anything physical without a parent reviewing the Skill first.</div>
+      </div>
 
-  <div class="divider"></div>
+      <div class="divider"></div>
 
-  <div class="dont-item">
-    <div class="dont-header"><span class="dont-icon">📁</span><strong>Remember: the agent can see everything on the computer</strong></div>
-    <p class="dont-body">Once OpenClaw is installed, it has access to all files and folders on that machine. Don't install it on a computer that has sensitive family documents, banking files, or private photos. Use a dedicated machine or a clean old laptop — which is exactly what we're doing today.</p>
-    <div class="dont-lesson">💡 Rule: The agent's computer = the agent's computer. Keep it separate.</div>
-  </div>
+      <div class="dont-item">
+        <div class="dont-header"><span class="dont-icon">📁</span><strong>Remember: the agent can see everything on the computer</strong></div>
+        <p class="dont-body">Once OpenClaw is installed, it has access to all files and folders on that machine. Don't install it on a computer that has sensitive family documents, banking files, or private photos. Use a dedicated machine or a clean old laptop — which is exactly what we're doing today.</p>
+        <div class="dont-lesson">💡 Rule: The agent's computer = the agent's computer. Keep it separate.</div>
+      </div>
 
-  <div class="divider"></div>
+      <div class="divider"></div>
 
-  <div class="dont-item">
-    <div class="dont-header"><span class="dont-icon">🤥</span><strong>Don't trust the agent blindly</strong></div>
-    <p class="dont-body">AI can be confidently wrong. It might give you an answer that sounds completely correct but isn't. This is called a <span class="tip-word" data-tip="A hallucination is when AI makes up a fact and presents it as true. It's not lying — it just doesn't know what it doesn't know.">hallucination</span>. For fun things like chess — no big deal. For anything that matters (medical, legal, financial) — always double-check with a real source.</p>
-    <div class="dont-lesson">💡 Rule: AI is a starting point, not the final word.</div>
-  </div>
+      <div class="dont-item">
+        <div class="dont-header"><span class="dont-icon">🤥</span><strong>Don't trust the agent blindly</strong></div>
+        <p class="dont-body">AI can be confidently wrong. It might give you an answer that sounds completely correct but isn't. This is called a <span class="tip-word" data-tip="A hallucination is when AI makes up a fact and presents it as true. It's not lying — it just doesn't know what it doesn't know.">hallucination</span>. For fun things like chess — no big deal. For anything that matters (medical, legal, financial) — always double-check with a real source.</p>
+        <div class="dont-lesson">💡 Rule: AI is a starting point, not the final word.</div>
+      </div>
 
-</div>
-```
-
+    </div>
   </div>
 
   <!-- FOR PARENTS AFTER -->
-
   <div class="section">
     <div class="section-label">
       <span class="icon">👨‍👩‍👧</span>
