@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUHLMANN Steel Products — Design Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --canvas:#e8e8ec;--frame-bg:#fff;--panel-bg:#f5f5f7;--text:#1a1a1a;--text-dim:#5a5a66;
+  --text-muted:#8a8a96;--border:#d4d4d8;--red:#c8102e;--red-dim:#a30d24;--red-light:#fdf2f4;
+  --green:#1a8a3e;--green-light:#f0faf3;--yellow:#b47a00;--yellow-light:#fdf8ed;
+  --blue:#2563a8;--blue-light:#f0f5fb;--purple:#7c3aad;--purple-light:#f8f2fd;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--canvas);color:var(--text);overflow-x:hidden}
+
+/* Top bar */
+.figma-bar{position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;height:48px;background:#2c2c2c;padding:0 20px;color:#ccc;font-size:13px;border-bottom:1px solid #1a1a1a}
+.figma-bar-left{display:flex;align-items:center;gap:12px}
+.figma-logo{width:24px;height:24px;background:linear-gradient(135deg,#f24e1e 0%,#ff7262 25%,#a259ff 50%,#1abcfe 75%,#0acf83 100%);border-radius:4px}
+.figma-bar-title{font-weight:600;color:#fff;font-size:13px}
+.figma-bar-subtitle{color:#888;font-size:12px}
+.figma-bar-right{display:flex;align-items:center;gap:16px}
+.figma-zoom{font-size:11px;color:#888;background:#3a3a3a;padding:3px 8px;border-radius:4px}
+.figma-share-btn{background:var(--blue);color:#fff;border:none;padding:5px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:default}
+
+/* Sidebar */
+.page-nav{position:fixed;left:0;top:48px;width:220px;height:calc(100vh - 48px);background:#2c2c2c;border-right:1px solid #3a3a3a;z-index:900;padding:16px 0;overflow-y:auto}
+.nav-section{padding:0 14px;margin-bottom:20px}
+.nav-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;margin-bottom:8px;padding-left:2px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:4px;font-size:12px;color:#aaa;cursor:pointer;transition:all .1s;text-decoration:none}
+.nav-item:hover{background:#3a3a3a;color:#fff}
+.nav-item.active{background:rgba(37,99,168,.3);color:#69b3ff}
+.nav-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
+/* Canvas */
+.canvas{margin-left:220px;padding:60px 60px 120px;min-height:calc(100vh - 48px)}
+
+/* Frame */
+.frame{background:var(--frame-bg);border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04);margin-bottom:80px;overflow:hidden;position:relative}
+.frame-label{position:absolute;top:-28px;left:0;font-size:12px;font-weight:600;color:var(--text-dim);display:flex;align-items:center;gap:8px}
+.frame-label .dim{font-size:10px;color:var(--text-muted);font-weight:400}
+
+/* Cover */
+.cover{padding:100px 80px;background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 100%);color:#fff;min-height:560px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(200,16,46,.15) 0%,transparent 70%);pointer-events:none}
+.cover-logo{display:flex;align-items:center;gap:14px;margin-bottom:48px}
+.cover-logo-text{font-size:18px;font-weight:800;letter-spacing:3px;color:#fff}
+.cover h1{font-size:52px;font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px;max-width:680px}
+.cover h1 span{color:var(--red)}
+.cover-sub{font-size:17px;color:#999;line-height:1.6;max-width:520px;margin-bottom:40px}
+.cover-meta{display:flex;gap:24px;font-size:12px;color:#666}
+.cover-meta-item{display:flex;align-items:center;gap:6px}
+.cover-meta-dot{width:6px;height:6px;border-radius:50%;background:var(--red)}
+
+/* Design System */
+.ds-page{padding:48px}
+.ds-title{font-size:24px;font-weight:800;margin-bottom:6px;letter-spacing:-.5px}
+.ds-subtitle{font-size:13px;color:var(--text-muted);margin-bottom:36px}
+.ds-section{margin-bottom:40px}
+.ds-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.color-card{border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.color-swatch{height:64px}
+.color-info{padding:10px 12px;background:#fff}
+.color-name{font-size:11px;font-weight:700;margin-bottom:2px}
+.color-hex{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text-muted)}
+.type-row{display:flex;align-items:baseline;gap:24px;padding:14px 0;border-bottom:1px solid #f0f0f2}
+.type-spec{width:140px;flex-shrink:0}
+.type-spec-name{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.type-spec-detail{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text-muted);margin-top:2px}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.comp-card{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.comp-preview{padding:24px;background:var(--panel-bg);display:flex;align-items:center;justify-content:center;min-height:80px;gap:8px;flex-wrap:wrap}
+.comp-label{padding:10px 14px;font-size:11px;font-weight:600;color:var(--text-dim);background:#fff;border-top:1px solid var(--border)}
+
+/* Screen pages */
+.screen-page{padding:48px}
+.screen-header{margin-bottom:32px}
+.screen-step-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;background:var(--red-light);color:var(--red);margin-bottom:8px}
+.screen-title{font-size:24px;font-weight:800;letter-spacing:-.5px}
+.screen-desc{font-size:13px;color:var(--text-muted);margin-top:4px}
+.app-preview{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:#f7f7f8;margin-bottom:32px}
+.app-preview-bar{height:32px;background:#f0f0f2;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:6px}
+.app-preview-dot{width:10px;height:10px;border-radius:50%;background:#ddd}
+.app-preview-dot.r{background:#ff5f57}.app-preview-dot.y{background:#febc2e}.app-preview-dot.g{background:#28c840}
+.app-preview-url{margin-left:12px;font-size:10px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;background:#fff;padding:3px 10px;border-radius:4px;border:1px solid var(--border);flex:1;max-width:400px}
+.annotations{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.annotation{display:flex;gap:12px;padding:16px;background:var(--panel-bg);border-radius:8px;border:1px solid var(--border)}
+.annotation-num{width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+.annotation-text{font-size:12px;line-height:1.6;color:var(--text-dim)}
+.annotation-title{font-weight:700;color:var(--text);margin-bottom:2px;font-size:12px}
+
+/* Mini app styles */
+.mini-app{font-family:'Inter',sans-serif;background:#f7f7f8;color:#1a1a1a}
+.mini-header{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:48px;border-bottom:1px solid #e0e0e4;background:#fff}
+.mini-header-left{display:flex;align-items:center;gap:12px}
+.mini-logo-text{font-size:13px;font-weight:800;letter-spacing:1.5px;color:#1a1a1a}
+.mini-divider{width:1px;height:20px;background:#e0e0e4}
+.mini-app-name{font-size:11px;color:#5a5a66;font-weight:500}
+.mini-header-right{display:flex;align-items:center;gap:10px}
+.mini-sg{font-size:10px;color:#8a8a96}
+.mini-demo{display:flex;align-items:center;gap:4px;padding:3px 8px;border-radius:3px;font-size:9px;font-weight:700;background:#fdf2f4;color:#c8102e;border:1px solid rgba(200,16,46,.15)}
+.mini-demo-dot{width:4px;height:4px;border-radius:50%;background:#c8102e}
+.mini-body{padding:20px;max-width:960px;margin:0 auto}
+.mini-hero{text-align:center;margin-bottom:20px}
+.mini-hero-bar{display:inline-block;width:28px;height:2px;background:#c8102e;border-radius:1px;margin-bottom:8px}
+.mini-hero h2{font-size:17px;font-weight:800;letter-spacing:-.3px;margin-bottom:4px}
+.mini-hero p{font-size:11px;color:#8a8a96}
+.mini-steps{display:flex;gap:4px;justify-content:center;margin-bottom:16px}
+.mini-step{display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:4px;font-size:10px;font-weight:600;color:#8a8a96;background:#fff;border:1px solid #e0e0e4}
+.mini-step.active{color:#c8102e;border-color:#c8102e;background:#fdf2f4}
+.mini-step.done{color:#1a8a3e;border-color:transparent;background:#f0faf3}
+.mini-step-num{width:16px;height:16px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;background:#f2f2f4;border:1px solid #e0e0e4;color:#8a8a96}
+.mini-step.active .mini-step-num{background:#c8102e;color:#fff;border-color:#c8102e}
+.mini-step.done .mini-step-num{background:#1a8a3e;color:#fff;border-color:#1a8a3e}
+.mini-panel{background:#fff;border:1px solid #e0e0e4;border-radius:6px;padding:16px;margin-bottom:10px}
+.mini-panel-red{border-top:2px solid #c8102e}
+.mini-panel-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#5a5a66;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.mini-ti{width:3px;height:12px;background:#c8102e;border-radius:1px}
+.mini-upload{border:2px dashed #d0d0d6;border-radius:6px;padding:24px;text-align:center}
+.mini-upload-icon{width:28px;height:28px;margin:0 auto 6px;border-radius:6px;background:#f2f2f4;display:flex;align-items:center;justify-content:center}
+.mini-upload-text{font-size:10px;color:#5a5a66}
+.mini-upload-text small{color:#8a8a96}
+.mini-file{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:#f2f2f4;border-radius:4px;font-size:10px;border:1px solid #e0e0e4;margin-top:4px}
+.mini-file-name{font-family:'JetBrains Mono',monospace;font-size:10px}
+.mini-file-meta{color:#8a8a96;font-size:9px;margin-left:8px}
+.mini-ft{display:inline-block;padding:1px 5px;border-radius:2px;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-left:6px}
+.mini-ft-stock{background:#f0f5fb;color:#2563a8}
+.mini-ft-order{background:#fdf8ed;color:#b47a00}
+.mini-ft-price{background:#f0faf3;color:#1a8a3e}
+.mini-btn{padding:6px 12px;border-radius:4px;font-size:10px;font-weight:700;border:none;cursor:default;font-family:'Inter',sans-serif}
+.mini-btn-primary{background:#c8102e;color:#fff}
+.mini-btn-secondary{background:#fff;color:#5a5a66;border:1px solid #e0e0e4}
+.mini-btn-row{display:flex;gap:6px;justify-content:flex-end;margin-top:12px}
+.mini-rules-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.mini-rule{background:#f7f7f8;border:1px solid #e0e0e4;border-radius:4px;padding:10px;font-size:9px;border-left:3px solid #e0e0e4}
+.mini-rule-header{display:flex;align-items:center;gap:4px;margin-bottom:4px}
+.mini-rule-check{width:12px;height:12px;accent-color:#c8102e}
+.mini-rule-name{font-weight:700;font-size:10px;display:flex;align-items:center;gap:4px}
+.mini-rule-desc{color:#5a5a66;line-height:1.4}
+.mini-rtag{display:inline-block;padding:1px 4px;border-radius:2px;font-size:7px;font-weight:800;text-transform:uppercase;letter-spacing:.4px}
+.mini-rtag-merge{background:#f0f5fb;color:#2563a8}
+.mini-rtag-calc{background:#fdf8ed;color:#b47a00}
+.mini-rtag-flag{background:#fdf2f4;color:#c8102e}
+.mini-rtag-map{background:#f0faf3;color:#1a8a3e}
+.mini-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px}
+.mini-summary-card{background:#f7f7f8;border:1px solid #e0e0e4;border-radius:4px;padding:10px 8px;text-align:center}
+.mini-summary-val{font-size:16px;font-weight:800;letter-spacing:-.3px}
+.mini-summary-lbl{font-size:8px;color:#8a8a96;margin-top:2px;text-transform:uppercase;letter-spacing:.4px;font-weight:600}
+.mini-tabs{display:flex;gap:0;margin-bottom:10px;border-bottom:1px solid #e0e0e4}
+.mini-tab{padding:6px 10px;font-size:10px;font-weight:600;color:#8a8a96;border-bottom:2px solid transparent;margin-bottom:-1px}
+.mini-tab.active{color:#c8102e;border-bottom-color:#c8102e}
+.mini-table-wrap{border:1px solid #e0e0e4;border-radius:4px;overflow:hidden}
+.mini-table{width:100%;border-collapse:collapse;font-size:9px}
+.mini-table th{background:#f2f2f4;padding:6px 8px;text-align:left;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#8a8a96;border-bottom:1px solid #e0e0e4;white-space:nowrap}
+.mini-table td{padding:5px 8px;border-bottom:1px solid #f0f0f2;font-family:'JetBrains Mono',monospace;font-size:9px;white-space:nowrap}
+.mini-table tr:last-child td{border-bottom:none}
+.mini-badge{display:inline-block;padding:1px 5px;border-radius:2px;font-size:7px;font-weight:800;font-family:'Inter',sans-serif;letter-spacing:.2px}
+.mini-badge-ok{background:#f0faf3;color:#1a8a3e}
+.mini-badge-reorder{background:#fdf8ed;color:#b47a00}
+.mini-badge-low{background:#fdf2f4;color:#c8102e}
+.mini-badge-pipe{background:#f0f5fb;color:#2563a8}
+.mini-badge-fitting{background:#f8f2fd;color:#7c3aad}
+.mini-badge-flange{background:#fdf8ed;color:#b47a00}
+.mini-badge-valve{background:#f0faf3;color:#1a8a3e}
+.mini-download{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#fdf2f4;border:1px solid rgba(200,16,46,.15);border-radius:4px;margin-top:10px}
+.mini-download span{font-size:10px;font-weight:600}
+.mini-footer-bar{height:2px;background:linear-gradient(90deg,#c8102e 0%,#a30d24 30%,transparent 100%);margin-top:24px}
+
+/* Flow */
+.flow-page{padding:48px}
+.flow-diagram{display:flex;align-items:center;justify-content:center;gap:0;padding:40px 0}
+.flow-node{text-align:center;padding:20px 28px;border-radius:10px;border:2px solid var(--border);background:#fff;min-width:160px}
+.flow-node.active{border-color:var(--red);box-shadow:0 0 0 3px var(--red-light)}
+.flow-node-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.flow-node-desc{font-size:10px;color:var(--text-muted)}
+.flow-arrow{font-size:20px;color:var(--text-muted);padding:0 8px}
+
+@media(max-width:1024px){
+  .page-nav{display:none}.canvas{margin-left:0;padding:30px 20px 80px}
+  .cover{padding:60px 40px}.cover h1{font-size:36px}
+  .ds-page,.screen-page,.flow-page{padding:28px}
+  .annotations{grid-template-columns:1fr}.mini-rules-grid{grid-template-columns:1fr}
+  .mini-summary{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="figma-bar">
+  <div class="figma-bar-left">
+    <div class="figma-logo"></div>
+    <span class="figma-bar-title">BUHLMANN Steel Products &mdash; Design Showcase</span>
+    <span class="figma-bar-subtitle">Oinio Community / Design System</span>
+  </div>
+  <div class="figma-bar-right">
+    <span class="figma-zoom">100%</span>
+    <button class="figma-share-btn">Share</button>
+  </div>
+</div>
+
+<div class="page-nav">
+  <div class="nav-section">
+    <div class="nav-section-title">Pages</div>
+    <a href="#cover" class="nav-item active"><div class="nav-dot" style="background:#c8102e"></div> Cover</a>
+    <a href="#design-system" class="nav-item"><div class="nav-dot" style="background:#2563a8"></div> Design System</a>
+    <a href="#user-flow" class="nav-item"><div class="nav-dot" style="background:#7c3aad"></div> User Flow</a>
+    <a href="#screen-upload" class="nav-item"><div class="nav-dot" style="background:#1a8a3e"></div> Screen: Upload</a>
+    <a href="#screen-rules" class="nav-item"><div class="nav-dot" style="background:#b47a00"></div> Screen: Rules</a>
+    <a href="#screen-output" class="nav-item"><div class="nav-dot" style="background:#c8102e"></div> Screen: Output</a>
+  </div>
+</div>
+
+<div class="canvas">
+
+  <!-- COVER -->
+  <div class="frame" id="cover">
+    <div class="frame-label">Cover <span class="dim">1440 x 560</span></div>
+    <div class="cover">
+      <div class="cover-logo">
+        <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="none" stroke="#c8102e" stroke-width="2.5"/><text x="24" y="30" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="22" fill="#c8102e">B</text></svg>
+        <span class="cover-logo-text">BUHLMANN</span>
+      </div>
+      <h1>Steel Products<br><span>Report Consolidator</span></h1>
+      <p class="cover-sub">Merge stock levels, purchase orders, and pricing data across pipes, fittings, flanges, and valves &mdash; built for the Singapore operations team.</p>
+      <div class="cover-meta">
+        <div class="cover-meta-item"><div class="cover-meta-dot"></div> Singapore Pte. Ltd.</div>
+        <div class="cover-meta-item"><div class="cover-meta-dot"></div> Demo Application</div>
+        <div class="cover-meta-item"><div class="cover-meta-dot"></div> March 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIGN SYSTEM -->
+  <div class="frame" id="design-system">
+    <div class="frame-label">Design System <span class="dim">1440 x auto</span></div>
+    <div class="ds-page">
+      <div class="ds-title">Design System</div>
+      <div class="ds-subtitle">Colors, typography, and component library for the Report Consolidator</div>
+
+      <div class="ds-section">
+        <div class="ds-section-title">Color Palette</div>
+        <div class="color-grid">
+          <div class="color-card"><div class="color-swatch" style="background:#c8102e"></div><div class="color-info"><div class="color-name">Primary Red</div><div class="color-hex">#c8102e</div></div></div>
+          <div class="color-card"><div class="color-swatch" style="background:#a30d24"></div><div class="color-info"><div class="color-name">Red Dark</div><div class="color-hex">#a30d24</div></div></div>
+          <div class="color-card"><div class="color-swatch" style="background:#1a8a3e"></div><div class="color-info"><div class="color-name">Green / OK</div><div class="color-hex">#1a8a3e</div></div></div>
+          <div class="color-card"><div class="color-swatch" style="background:#b47a00"></div><div class="color-info"><div class="color-name">Yellow / Warn</div><div class="color-hex">#b47a00</div></div></div>
+          <div class="color-card"><div class="color-swatch" style="background:#2563a8"></div><div class="color-info"><div class="color-name">Blue / Info</div><div class="color-hex">#2563a8</div></div></div>
+          <div class="color-card"><div class="color-swatch" style="background:#7c3aad"></div><div class="color-info"><div class="color-name">Purple / Accent</div><div class="color-hex">#7c3aad</div></div></div>
+          <div class="color-card"><div class="color-swatch" style="background:#1a1a1a"></div><div class="color-info"><div class="color-name">Text Primary</div><div class="color-hex">#1a1a1a</div></div></div>
+          <div class="color-card"><div class="color-swatch" style="background:#f7f7f8"></div><div class="color-info"><div class="color-name">Background</div><div class="color-hex">#f7f7f8</div></div></div>
+        </div>
+      </div>
+
+      <div class="ds-section">
+        <div class="ds-section-title">Typography</div>
+        <div class="type-row"><div class="type-spec"><div class="type-spec-name">Heading 1</div><div class="type-spec-detail">Inter 800 / 22px</div></div><div style="font-size:22px;font-weight:800;letter-spacing:-.4px">Steel Products Report Consolidator</div></div>
+        <div class="type-row"><div class="type-spec"><div class="type-spec-name">Panel Title</div><div class="type-spec-detail">Inter 700 / 11px / Upper</div></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#5a5a66">Source Files</div></div>
+        <div class="type-row"><div class="type-spec"><div class="type-spec-name">Body</div><div class="type-spec-detail">Inter 400 / 11-12px</div></div><div style="font-size:12px;color:#5a5a66">Merge stock levels, purchase orders and pricing across product categories.</div></div>
+        <div class="type-row"><div class="type-spec"><div class="type-spec-name">Monospace</div><div class="type-spec-detail">JetBrains Mono / 10-11px</div></div><div style="font-family:'JetBrains Mono',monospace;font-size:11px">BH-P-CS-001 &nbsp; $285.00 &nbsp; 120 units</div></div>
+        <div class="type-row"><div class="type-spec"><div class="type-spec-name">Metric Value</div><div class="type-spec-detail">Inter 800 / 20px</div></div><div style="font-size:20px;font-weight:800;letter-spacing:-.5px;color:#2563a8">17</div></div>
+      </div>
+
+      <div class="ds-section">
+        <div class="ds-section-title">Components</div>
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-preview"><button class="mini-btn mini-btn-primary">Primary Button</button><button class="mini-btn mini-btn-secondary">Secondary</button></div><div class="comp-label">Buttons</div></div>
+          <div class="comp-card"><div class="comp-preview"><span class="mini-badge mini-badge-ok">OK</span><span class="mini-badge mini-badge-reorder">REORDER</span><span class="mini-badge mini-badge-low">BACKORDER</span></div><div class="comp-label">Status Badges</div></div>
+          <div class="comp-card"><div class="comp-preview"><span class="mini-badge mini-badge-pipe">Pipes</span><span class="mini-badge mini-badge-fitting">Fittings</span><span class="mini-badge mini-badge-flange">Flanges</span><span class="mini-badge mini-badge-valve">Valves</span></div><div class="comp-label">Category Badges</div></div>
+          <div class="comp-card"><div class="comp-preview"><span class="mini-ft mini-ft-stock">Stock</span><span class="mini-ft mini-ft-order">Orders</span><span class="mini-ft mini-ft-price">Prices</span></div><div class="comp-label">File Type Tags</div></div>
+          <div class="comp-card"><div class="comp-preview"><span class="mini-rtag mini-rtag-merge">Merge</span><span class="mini-rtag mini-rtag-calc">Calc</span><span class="mini-rtag mini-rtag-flag">Flag</span><span class="mini-rtag mini-rtag-map">Map</span></div><div class="comp-label">Rule Type Tags</div></div>
+          <div class="comp-card"><div class="comp-preview" style="flex-direction:column;align-items:stretch"><div class="mini-step active" style="justify-content:center"><span class="mini-step-num">1</span> Upload</div><div class="mini-step done" style="justify-content:center"><span class="mini-step-num">&#10003;</span> Done</div></div><div class="comp-label">Step Indicators</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USER FLOW -->
+  <div class="frame" id="user-flow">
+    <div class="frame-label">User Flow <span class="dim">1440 x 280</span></div>
+    <div class="flow-page">
+      <div class="ds-title">User Flow</div>
+      <div class="ds-subtitle">Three-step consolidation workflow</div>
+      <div class="flow-diagram">
+        <div class="flow-node active">
+          <div style="margin-bottom:8px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c8102e" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+          <div class="flow-node-title">1. Upload</div>
+          <div class="flow-node-desc">Drop .xlsx / .csv files<br>or load sample data</div>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node">
+          <div style="margin-bottom:8px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5a5a66" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+          <div class="flow-node-title">2. Rules</div>
+          <div class="flow-node-desc">Configure 6 consolidation<br>rules via checkboxes</div>
+        </div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-node">
+          <div style="margin-bottom:8px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5a5a66" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+          <div class="flow-node-title">3. Output</div>
+          <div class="flow-node-desc">View summary, table<br>and export CSV/XLSX</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: UPLOAD -->
+  <div class="frame" id="screen-upload">
+    <div class="frame-label">Screen: Upload <span class="dim">1440 x auto</span></div>
+    <div class="screen-page">
+      <div class="screen-header"><div>
+        <div class="screen-step-badge">Step 1 of 3</div>
+        <div class="screen-title">Upload Source Files</div>
+        <div class="screen-desc">Users upload stock, PO, and price list files or load sample data for the demo</div>
+      </div></div>
+      <div class="app-preview">
+        <div class="app-preview-bar"><div class="app-preview-dot r"></div><div class="app-preview-dot y"></div><div class="app-preview-dot g"></div><div class="app-preview-url">bcchew-art.github.io/BUHLMANN-Steel-Products-Report-Consolidator-Demo/</div></div>
+        <div class="mini-app">
+          <div class="mini-header"><div class="mini-header-left"><svg width="28" height="28" viewBox="0 0 36 36"><circle cx="18" cy="18" r="16" fill="none" stroke="#c8102e" stroke-width="2"/><text x="18" y="23" text-anchor="middle" font-family="Inter" font-weight="800" font-size="17" fill="#c8102e">B</text></svg><span class="mini-logo-text">BUHLMANN</span><div class="mini-divider"></div><span class="mini-app-name">Report Consolidator</span></div><div class="mini-header-right"><span class="mini-sg">Singapore Pte. Ltd.</span><div class="mini-demo"><div class="mini-demo-dot"></div> DEMO</div></div></div>
+          <div class="mini-body">
+            <div class="mini-hero"><div class="mini-hero-bar"></div><h2>Steel Products Report Consolidator</h2><p>Merge stock levels, purchase orders and pricing across pipes, fittings, flanges and valves</p></div>
+            <div class="mini-steps"><div class="mini-step active"><span class="mini-step-num">1</span> Upload</div><div class="mini-step"><span class="mini-step-num">2</span> Rules</div><div class="mini-step"><span class="mini-step-num">3</span> Output</div></div>
+            <div class="mini-panel mini-panel-red">
+              <div class="mini-panel-title"><span class="mini-ti"></span> Source Files</div>
+              <div class="mini-upload"><div class="mini-upload-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a8a96" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><div class="mini-upload-text">Drop report files here or click to browse<br><small>.xlsx, .csv &mdash; Stock Reports, PO Trackers, Price Lists</small></div></div>
+              <div class="mini-file"><div><span class="mini-file-name">tuas_warehouse_stock_mar2026.xlsx</span><span class="mini-file-meta">18.4 KB / 17 rows</span><span class="mini-ft mini-ft-stock">Stock</span></div></div>
+              <div class="mini-file"><div><span class="mini-file-name">purchase_orders_q1_2026.xlsx</span><span class="mini-file-meta">12.1 KB / 17 rows</span><span class="mini-ft mini-ft-order">Orders</span></div></div>
+              <div class="mini-file"><div><span class="mini-file-name">supplier_pricelist_2026.csv</span><span class="mini-file-meta">8.6 KB / 45 rows</span><span class="mini-ft mini-ft-price">Prices</span></div></div>
+              <div class="mini-btn-row"><button class="mini-btn mini-btn-primary">Next: Configure Rules</button></div>
+            </div>
+            <div class="mini-panel"><div class="mini-panel-title"><span class="mini-ti"></span> Quick Demo</div><p style="font-size:10px;color:#5a5a66;margin-bottom:8px">Load 3 sample reports: Tuas Warehouse Stock, Purchase Orders (Q1 2026), Supplier Price List</p><button class="mini-btn mini-btn-primary">Load Sample Data</button></div>
+          </div>
+          <div class="mini-footer-bar"></div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><div class="annotation-num">1</div><div><div class="annotation-title">Sticky Header</div><div class="annotation-text">60px height, white background. BUHLMANN logo (SVG circle-B), app name divider, animated DEMO badge with pulse dot.</div></div></div>
+        <div class="annotation"><div class="annotation-num">2</div><div><div class="annotation-title">Step Indicator</div><div class="annotation-text">Three-step horizontal progress: Upload (active/red), Rules, Output. Completed steps show green with checkmark.</div></div></div>
+        <div class="annotation"><div class="annotation-num">3</div><div><div class="annotation-title">Upload Zone</div><div class="annotation-text">Dashed border drop zone. On hover, border turns red with subtle red glow background. Accepts .xlsx and .csv files.</div></div></div>
+        <div class="annotation"><div class="annotation-num">4</div><div><div class="annotation-title">File List Items</div><div class="annotation-text">JetBrains Mono font for filenames. Color-coded type badges: Stock (blue), Orders (yellow), Prices (green). Each has size and row count.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: RULES -->
+  <div class="frame" id="screen-rules">
+    <div class="frame-label">Screen: Rules <span class="dim">1440 x auto</span></div>
+    <div class="screen-page">
+      <div class="screen-header"><div>
+        <div class="screen-step-badge">Step 2 of 3</div>
+        <div class="screen-title">Configure Rules</div>
+        <div class="screen-desc">Toggle consolidation rules with checkboxes &mdash; 4 rule types: Merge, Calc, Flag, Map</div>
+      </div></div>
+      <div class="app-preview">
+        <div class="app-preview-bar"><div class="app-preview-dot r"></div><div class="app-preview-dot y"></div><div class="app-preview-dot g"></div><div class="app-preview-url">bcchew-art.github.io/BUHLMANN-Steel-Products-Report-Consolidator-Demo/</div></div>
+        <div class="mini-app">
+          <div class="mini-header"><div class="mini-header-left"><svg width="28" height="28" viewBox="0 0 36 36"><circle cx="18" cy="18" r="16" fill="none" stroke="#c8102e" stroke-width="2"/><text x="18" y="23" text-anchor="middle" font-family="Inter" font-weight="800" font-size="17" fill="#c8102e">B</text></svg><span class="mini-logo-text">BUHLMANN</span><div class="mini-divider"></div><span class="mini-app-name">Report Consolidator</span></div><div class="mini-header-right"><span class="mini-sg">Singapore Pte. Ltd.</span><div class="mini-demo"><div class="mini-demo-dot"></div> DEMO</div></div></div>
+          <div class="mini-body">
+            <div class="mini-hero"><div class="mini-hero-bar"></div><h2>Steel Products Report Consolidator</h2><p>Merge stock levels, purchase orders and pricing across pipes, fittings, flanges and valves</p></div>
+            <div class="mini-steps"><div class="mini-step done"><span class="mini-step-num">&#10003;</span> Upload</div><div class="mini-step active"><span class="mini-step-num">2</span> Rules</div><div class="mini-step"><span class="mini-step-num">3</span> Output</div></div>
+            <div class="mini-panel mini-panel-red">
+              <div class="mini-panel-title"><span class="mini-ti"></span> Consolidation Rules</div>
+              <div class="mini-rules-grid">
+                <div class="mini-rule"><div class="mini-rule-header"><input type="checkbox" class="mini-rule-check" checked disabled><div class="mini-rule-name"><span class="mini-rtag mini-rtag-merge">Merge</span> Join by Part No.</div></div><div class="mini-rule-desc">Match rows across Stock, Orders and Price files using Part Number.</div></div>
+                <div class="mini-rule"><div class="mini-rule-header"><input type="checkbox" class="mini-rule-check" checked disabled><div class="mini-rule-name"><span class="mini-rtag mini-rtag-calc">Calc</span> Available Qty</div></div><div class="mini-rule-desc">Available = On Hand - Allocated. Flag negatives as backorder.</div></div>
+                <div class="mini-rule"><div class="mini-rule-header"><input type="checkbox" class="mini-rule-check" checked disabled><div class="mini-rule-name"><span class="mini-rtag mini-rtag-calc">Calc</span> Inventory Value</div></div><div class="mini-rule-desc">Value = On Hand x Unit Cost (SGD). Roll up by category.</div></div>
+                <div class="mini-rule"><div class="mini-rule-header"><input type="checkbox" class="mini-rule-check" checked disabled><div class="mini-rule-name"><span class="mini-rtag mini-rtag-flag">Flag</span> Reorder Alert</div></div><div class="mini-rule-desc">Flag items where Available Qty falls below MOQ threshold.</div></div>
+                <div class="mini-rule"><div class="mini-rule-header"><input type="checkbox" class="mini-rule-check" checked disabled><div class="mini-rule-name"><span class="mini-rtag mini-rtag-map">Map</span> Grade &amp; Std</div></div><div class="mini-rule-desc">Preserve material grade (ASTM/DIN/EN/API) for traceability.</div></div>
+                <div class="mini-rule"><div class="mini-rule-header"><input type="checkbox" class="mini-rule-check" checked disabled><div class="mini-rule-name"><span class="mini-rtag mini-rtag-merge">Merge</span> Price Sync</div></div><div class="mini-rule-desc">Pull latest unit cost. Flag variance &gt;5% vs last purchase.</div></div>
+              </div>
+              <div class="mini-btn-row"><button class="mini-btn mini-btn-secondary">Back</button><button class="mini-btn mini-btn-primary">Run Consolidation</button></div>
+            </div>
+          </div>
+          <div class="mini-footer-bar"></div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><div class="annotation-num">1</div><div><div class="annotation-title">Rule Cards Grid</div><div class="annotation-text">3-column grid layout. Each card has a 3px left border that turns red on hover. Cards at 45% opacity when unchecked.</div></div></div>
+        <div class="annotation"><div class="annotation-num">2</div><div><div class="annotation-title">Rule Type Tags</div><div class="annotation-text">Four categories: Merge (blue), Calc (yellow), Flag (red), Map (green). 8px uppercase text with matching tints.</div></div></div>
+        <div class="annotation"><div class="annotation-num">3</div><div><div class="annotation-title">Checkbox Styling</div><div class="annotation-text">Native checkbox with accent-color: #c8102e. Clicking anywhere on the card label toggles the rule on/off.</div></div></div>
+        <div class="annotation"><div class="annotation-num">4</div><div><div class="annotation-title">Action Buttons</div><div class="annotation-text">Secondary "Back" (outlined) and primary "Run Consolidation" (red fill). Right-aligned row with 8px gap.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: OUTPUT -->
+  <div class="frame" id="screen-output">
+    <div class="frame-label">Screen: Output <span class="dim">1440 x auto</span></div>
+    <div class="screen-page">
+      <div class="screen-header"><div>
+        <div class="screen-step-badge">Step 3 of 3</div>
+        <div class="screen-title">Consolidated Output</div>
+        <div class="screen-desc">Summary metrics, filterable data table, and export options</div>
+      </div></div>
+      <div class="app-preview">
+        <div class="app-preview-bar"><div class="app-preview-dot r"></div><div class="app-preview-dot y"></div><div class="app-preview-dot g"></div><div class="app-preview-url">bcchew-art.github.io/BUHLMANN-Steel-Products-Report-Consolidator-Demo/</div></div>
+        <div class="mini-app">
+          <div class="mini-header"><div class="mini-header-left"><svg width="28" height="28" viewBox="0 0 36 36"><circle cx="18" cy="18" r="16" fill="none" stroke="#c8102e" stroke-width="2"/><text x="18" y="23" text-anchor="middle" font-family="Inter" font-weight="800" font-size="17" fill="#c8102e">B</text></svg><span class="mini-logo-text">BUHLMANN</span><div class="mini-divider"></div><span class="mini-app-name">Report Consolidator</span></div><div class="mini-header-right"><span class="mini-sg">Singapore Pte. Ltd.</span><div class="mini-demo"><div class="mini-demo-dot"></div> DEMO</div></div></div>
+          <div class="mini-body">
+            <div class="mini-hero"><div class="mini-hero-bar"></div><h2>Steel Products Report Consolidator</h2><p>Merge stock levels, purchase orders and pricing across pipes, fittings, flanges and valves</p></div>
+            <div class="mini-steps"><div class="mini-step done"><span class="mini-step-num">&#10003;</span> Upload</div><div class="mini-step done"><span class="mini-step-num">&#10003;</span> Rules</div><div class="mini-step active"><span class="mini-step-num">3</span> Output</div></div>
+            <div class="mini-panel mini-panel-red">
+              <div class="mini-panel-title"><span class="mini-ti"></span> Consolidated Report</div>
+              <div class="mini-summary">
+                <div class="mini-summary-card"><div class="mini-summary-val" style="color:#2563a8">17</div><div class="mini-summary-lbl">Total SKUs</div></div>
+                <div class="mini-summary-card"><div class="mini-summary-val" style="color:#1a8a3e">$327,735</div><div class="mini-summary-lbl">Inventory (SGD)</div></div>
+                <div class="mini-summary-card"><div class="mini-summary-val" style="color:#7c3aad">89.4</div><div class="mini-summary-lbl">Total Tonnes</div></div>
+                <div class="mini-summary-card"><div class="mini-summary-val" style="color:#b47a00">437</div><div class="mini-summary-lbl">On Order</div></div>
+                <div class="mini-summary-card"><div class="mini-summary-val" style="color:#c8102e">7</div><div class="mini-summary-lbl">Alerts</div></div>
+              </div>
+              <div class="mini-tabs"><div class="mini-tab active">All Items</div><div class="mini-tab">Pipes and Tubes</div><div class="mini-tab">Fittings</div><div class="mini-tab">Flanges</div><div class="mini-tab">Valves</div><div class="mini-tab">Alerts</div></div>
+              <div class="mini-table-wrap">
+                <table class="mini-table">
+                  <thead><tr><th>Part No.</th><th>Description</th><th>Category</th><th>Grade</th><th style="text-align:right">On Hand</th><th style="text-align:right">Avail</th><th style="text-align:right">Cost (SGD)</th><th style="text-align:right">Value (SGD)</th><th>Status</th></tr></thead>
+                  <tbody>
+                    <tr><td>BH-P-CS-001</td><td>Seamless Pipe 6in Sch40</td><td><span class="mini-badge mini-badge-pipe">Pipes</span></td><td>A106 Gr.B</td><td style="text-align:right">120</td><td style="text-align:right;color:#1a8a3e;font-weight:700">40</td><td style="text-align:right">$285.00</td><td style="text-align:right">$34,200</td><td><span class="mini-badge mini-badge-ok">OK</span></td></tr>
+                    <tr><td>BH-P-CS-002</td><td>Seamless Pipe 8in Sch80</td><td><span class="mini-badge mini-badge-pipe">Pipes</span></td><td>A106 Gr.B</td><td style="text-align:right">45</td><td style="text-align:right;color:#b47a00;font-weight:700">10</td><td style="text-align:right">$520.00</td><td style="text-align:right">$23,400</td><td><span class="mini-badge mini-badge-ok">OK</span></td></tr>
+                    <tr><td>BH-P-AL-005</td><td>Alloy Pipe 6in Sch40</td><td><span class="mini-badge mini-badge-pipe">Pipes</span></td><td>A335 P11</td><td style="text-align:right">18</td><td style="text-align:right;color:#c8102e;font-weight:700">3</td><td style="text-align:right">$1,250.00</td><td style="text-align:right">$22,500</td><td><span class="mini-badge mini-badge-reorder">REORDER</span></td></tr>
+                    <tr><td>BH-F-SS-012</td><td>Reducer Con 6in x 4in</td><td><span class="mini-badge mini-badge-fitting">Fittings</span></td><td>TP316L</td><td style="text-align:right">35</td><td style="text-align:right;color:#c8102e;font-weight:700">5</td><td style="text-align:right">$165.00</td><td style="text-align:right">$5,775</td><td><span class="mini-badge mini-badge-reorder">REORDER</span></td></tr>
+                    <tr><td>BH-FL-DX-023</td><td>WN Flange 3in 600# RTJ</td><td><span class="mini-badge mini-badge-flange">Flanges</span></td><td>S31803</td><td style="text-align:right">12</td><td style="text-align:right;color:#c8102e;font-weight:700">2</td><td style="text-align:right">$650.00</td><td style="text-align:right">$7,800</td><td><span class="mini-badge mini-badge-reorder">REORDER</span></td></tr>
+                    <tr><td>BH-V-GT-030</td><td>Gate Valve 6in 150# RF</td><td><span class="mini-badge mini-badge-valve">Valves</span></td><td>A216 WCB</td><td style="text-align:right">8</td><td style="text-align:right;color:#c8102e;font-weight:700">2</td><td style="text-align:right">$2,800.00</td><td style="text-align:right">$22,400</td><td><span class="mini-badge mini-badge-low">BACKORDER</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="mini-download"><span>Consolidated report ready &mdash; 3 source files merged, 17 SKUs processed</span><div style="display:flex;gap:4px"><button class="mini-btn mini-btn-secondary">Export .csv</button><button class="mini-btn mini-btn-primary">Export .xlsx</button></div></div>
+            </div>
+          </div>
+          <div class="mini-footer-bar"></div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><div class="annotation-num">1</div><div><div class="annotation-title">Summary Cards</div><div class="annotation-text">5-column grid: Total SKUs (blue), Inventory Value (green), Tonnes (purple), On Order (yellow), Alerts (red). 20px/800 weight values.</div></div></div>
+        <div class="annotation"><div class="annotation-num">2</div><div><div class="annotation-title">Filter Tabs</div><div class="annotation-text">6 tabs: All Items, Pipes, Fittings, Flanges, Valves, Alerts. Active tab has red 2px underline. Filters table by category.</div></div></div>
+        <div class="annotation"><div class="annotation-num">3</div><div><div class="annotation-title">Data Table</div><div class="annotation-text">JetBrains Mono data cells. Available column color-coded: green (OK), yellow (low), red (critical). Status badges: OK, REORDER, BACKORDER.</div></div></div>
+        <div class="annotation"><div class="annotation-num">4</div><div><div class="annotation-title">Export Bar</div><div class="annotation-text">Red-tinted banner with CSV and XLSX export buttons. Shows merge summary: "3 source files merged, 17 SKUs processed".</div></div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.nav-item').forEach(function(link){
+    link.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.querySelector(this.getAttribute('href'));
+      if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+      document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active')});
+      this.classList.add('active');
+    });
+  });
+  var sections=['cover','design-system','user-flow','screen-upload','screen-rules','screen-output'];
+  window.addEventListener('scroll',function(){
+    var s=window.scrollY+200;
+    for(var i=sections.length-1;i>=0;i--){
+      var el=document.getElementById(sections[i]);
+      if(el&&el.offsetTop<=s){
+        document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active')});
+        var a=document.querySelector('.nav-item[href="#'+sections[i]+'"]');
+        if(a)a.classList.add('active');
+        break;
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
